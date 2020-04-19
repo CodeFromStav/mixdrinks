@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "202830111826",
+    "firebase_url": "https://mixdrinks-nau-499.firebaseio.com",
+    "project_id": "mixdrinks-nau-499",
+    "storage_bucket": "mixdrinks-nau-499.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202830111826:android:a8093c394814f1d633eb8b",
+        "android_client_info": {
+          "package_name": "brewmeisters.mixdrinks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202830111826-100p6m74k3lirskic0hc6ig266eivpva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbv-QVUbPkY1j8D-jryEhHDEx3zrcfdXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202830111826-100p6m74k3lirskic0hc6ig266eivpva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
