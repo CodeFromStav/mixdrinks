@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mixdrinks/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mixdrinks/screens/home_screen.dart';
 import 'package:mixdrinks/screens/welcome_screen.dart';
 
 final _firestore = Firestore.instance;
@@ -107,11 +108,11 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
             ListTile(
-              title: Text('Welcome Screen'),
+              title: Text('Home Screen'),
               onTap: () {
                 // Update the state of the app
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => WelcomeScreen()));
+                    MaterialPageRoute(builder: (context) => Home()));
               },
             ),
             ListTile(
