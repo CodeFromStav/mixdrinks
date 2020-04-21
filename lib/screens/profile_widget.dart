@@ -16,6 +16,8 @@ class ProfileWidget extends StatelessWidget {
     print(text);
   }
 
+  // TODO: add log out button that redirects user to welcome screen 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

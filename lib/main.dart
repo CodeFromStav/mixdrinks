@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mixdrinks/screens/drink_info.dart';
+import 'package:mixdrinks/screens/drink_search.dart';
 import 'package:mixdrinks/screens/drinks_widget.dart';
 import 'package:mixdrinks/screens/home_screen.dart';
 import 'package:mixdrinks/screens/welcome_screen.dart';
@@ -27,8 +29,8 @@ class MixDrinks extends StatelessWidget {
         ChatScreen.id: (context) => ChatScreen(),
         Home.id: (context) => Home(),
         DrinksWidget.id: (context) => DrinksWidget(),
-
-
+        DrinkSearch.id: (context) => DrinkSearch(),
+        DrinkInfo.id: (context) => DrinkInfo(),
       },
     );
   }

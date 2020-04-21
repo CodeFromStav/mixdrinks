@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mixdrinks/components/rounded_button.dart';
 import 'package:mixdrinks/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mixdrinks/screens/drink_search.dart';
+import 'package:mixdrinks/screens/registration_screen.dart';
 import 'chat_screen.dart';
 import 'home_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';

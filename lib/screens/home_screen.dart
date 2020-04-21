@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mixdrinks/components//search_widget.dart';
+import 'package:mixdrinks/screens/drink_search.dart';
 import 'package:mixdrinks/screens/drinks_widget.dart';
 import 'package:mixdrinks/screens/profile_widget.dart';
 
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    SearchWidget(),
+    DrinkSearch(),
     DrinksWidget(),
     ProfileWidget()
   ];
@@ -22,11 +23,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text('Brewmeisters'),
-        ),
-      ),
+
       body: _children[_currentIndex], // new
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped, // new

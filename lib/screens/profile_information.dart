@@ -54,30 +54,33 @@ class _ProfileInformationState extends State<ProfileInformation> {
                                     setState(() => _user.lastName = val)),
                           ),
                           Expanded(
-                            child: CheckboxListTile(
-                                title: const Text('Social Drinking?'),
+                            child: SwitchListTile(
+                                title: const Text('Are you a social drinker?'),
                                 value: _user.passions[User.SocialDrinking],
+                                secondary: const Icon(Icons.person),
                                 onChanged: (val) {
                                   setState(() =>
                                       _user.passions[User.SocialDrinking] = val);
                                 }),
                           ),
                           Expanded(
-                            child: CheckboxListTile(
-                                title: const Text('Casual Drinking?'),
+                            child: SwitchListTile(
+                                title: const Text('Are you a casual drinker?'),
                                 value: _user.passions[User.CasualDrinking],
+                                secondary: const Icon(Icons.person),
                                 onChanged: (val) {
                                   setState(() => _user
                                       .passions[User.CasualDrinking] = val);
                                 }),
                           ),
                           Expanded(
-                            child: CheckboxListTile(
-                                title: const Text('Drink Connoisseur?'),
-                                value: _user.passions[User.ConnoisseurDrinking],
+                            child: SwitchListTile(
+                                title: const Text('Are you a heavy drinker?'),
+                                value: _user.passions[User.HeavyDrinking],
+                                secondary: const Icon(Icons.person),
                                 onChanged: (val) {
                                   setState(() =>
-                                      _user.passions[User.ConnoisseurDrinking] = val);
+                                      _user.passions[User.HeavyDrinking] = val);
                                 }),
                           ),
                           Expanded(
