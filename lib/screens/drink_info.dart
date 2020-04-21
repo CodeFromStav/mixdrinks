@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/drink_search.dart';
+import 'package:mixdrinks/screens/drink_search.dart';
 import 'drink_details.dart';
 
 class DrinkInfo extends StatefulWidget {

@@ -27,6 +27,10 @@ class _HomeState extends State<Home> {
           child: Text('Brewmeisters'),
         ),
       ),
+
+
+
+
       body: _children[_currentIndex], // new
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped, // new
@@ -45,7 +49,12 @@ class _HomeState extends State<Home> {
         ],
       ),
     );
+
+
+
   }
+
+
 
   void onTabTapped(int index) {
     setState(() {
