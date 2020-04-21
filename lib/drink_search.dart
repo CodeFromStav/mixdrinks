@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'drink_info.dart';
+import 'drink_details.dart';
 
 class DrinkSearch extends StatefulWidget {
   static const String id = 'drink_search';
@@ -132,15 +133,3 @@ class _DrinkSearchState extends State<DrinkSearch> {
 
 
 }
-
-class DrinkDetails {
-  final name;
-  final glass;
-  final category;
-  final ingredients;
-  final preparation;
-
-
-  DrinkDetails(this.name, this.glass,this.category,this.ingredients,this.preparation);
-}
-
