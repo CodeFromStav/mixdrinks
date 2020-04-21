@@ -15,6 +15,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
     final DrinkDetails args = ModalRoute.of(context).settings.arguments;
     List<String> formatIngredients = new List<String>();
     formatIngredients = removeBrackets(args.ingredients.toString()).split("unit");
+    //print(formatIngredients.toString());
       return MaterialApp(
       home: DefaultTabController(
         length: 4,
@@ -39,33 +40,55 @@ class _DrinkInfoState extends State<DrinkInfo> {
           ),
           body: TabBarView(
               children: [
-                Center(
-                  child: Column(
-                    children: <Widget>[
-                      Text(args.glass.toString()),
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(8),
+                      child: Text(args.glass.toString()),
+                    ),
+                  ],
                 ),
-                Center(
-                  child: Column(
-                    children: <Widget>[
-                      Text(args.category.toString()),
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(8),
+                      child: Text(args.category.toString()),
+                    ),
+                  ],
                 ),
-                Center(
-                  child: Column(
-                    children: <Row>[
-                      getTextWidgets(formatIngredients),
-                    ],
-                  ),
+                Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        itemCount: formatIngredients.length - 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            margin: EdgeInsets.all(8),
+                            padding: EdgeInsets.all(8),
+                            //child: Center(child: Text('Unit ${formatIngredients[index + 1]}')),
+                            child: Text('Unit ${formatIngredients[index + 1]}'),
+                          );
+                        },
+
+                      ),
+                    ),
+
+                  ],
                 ),
-                Center(
-                  child: Column(
-                    children: <Widget>[
-                      Text(args.preparation.toString()),
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(8),
+                      child: Text(args.preparation.toString()),
+                    ),
+                  ],
                 ),
               ]
           ),

@@ -118,10 +118,10 @@ class _DrinkSearchState extends State<DrinkSearch> {
   void _getNames() async {
     final drinkData = await DefaultAssetBundle.of(context).loadString('assets/drinks.json');
     List jsonList = jsonDecode(drinkData);
-    print(jsonList);
+    //print(jsonList);
     List tempList = new List();
     for (int i = 0; i < jsonList.length; i++) {
-      print(jsonList[i]); // 2 drinks at a time
+      //print(jsonList[i]); // 2 drinks at a time
       tempList.add(jsonList[i]);
     }
     setState(() {
