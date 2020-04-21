@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mixdrinks/screens/drink_search.dart';
 import 'package:mixdrinks/components/drink_details.dart';
+import 'home_screen.dart';
 
 class DrinkInfo extends StatefulWidget {
   static const String id = 'drink_info';
@@ -25,7 +26,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
               leading: BackButton(
                 color: Colors.black,
                 onPressed: () {
-                  Navigator.pushNamed(context, DrinkSearch.id);
+                  Navigator.pushNamed(context, Home.id);
                 },
               ),
               bottom: TabBar(
@@ -48,6 +49,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                         padding: EdgeInsets.all(8),
                         child: Text(args.glass.toString()),
                       ),
+                      Image.asset("images/" + args.name.toString() + ".jpg"),
                     ],
                   ),
                   Column(
