@@ -54,55 +54,36 @@ class _ProfileInformationState extends State<ProfileInformation> {
                                     setState(() => _user.lastName = val)),
                           ),
                           Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.fromLTRB(0, 50, 0, 20),
-                              child: Text('Subscribe'),
-                            ),
-                          ),
-                          Expanded(
-                            child: SwitchListTile(
-                                title: const Text('Monthly Newsletter'),
-                                value: _user.newsletter,
-                                onChanged: (bool val) =>
-                                    setState(() => _user.newsletter = val)),
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.fromLTRB(0, 50, 0, 20),
-                              child: Text('Interests'),
-                            ),
-                          ),
-                          Expanded(
                             child: CheckboxListTile(
-                                title: const Text('Cooking'),
-                                value: _user.passions[User.PassionCooking],
+                                title: const Text('Social Drinking?'),
+                                value: _user.passions[User.SocialDrinking],
                                 onChanged: (val) {
                                   setState(() =>
-                                      _user.passions[User.PassionCooking] = val);
+                                      _user.passions[User.SocialDrinking] = val);
                                 }),
                           ),
                           Expanded(
                             child: CheckboxListTile(
-                                title: const Text('Traveling'),
-                                value: _user.passions[User.PassionTraveling],
+                                title: const Text('Casual Drinking?'),
+                                value: _user.passions[User.CasualDrinking],
                                 onChanged: (val) {
                                   setState(() => _user
-                                      .passions[User.PassionTraveling] = val);
+                                      .passions[User.CasualDrinking] = val);
                                 }),
                           ),
                           Expanded(
                             child: CheckboxListTile(
-                                title: const Text('Hiking'),
-                                value: _user.passions[User.PassionHiking],
+                                title: const Text('Drink Connoisseur?'),
+                                value: _user.passions[User.ConnoisseurDrinking],
                                 onChanged: (val) {
                                   setState(() =>
-                                      _user.passions[User.PassionHiking] = val);
+                                      _user.passions[User.ConnoisseurDrinking] = val);
                                 }),
                           ),
                           Expanded(
                             child: Container(
                                 padding: const EdgeInsets.symmetric(
-                                    vertical: 16.0, horizontal: 16.0),
+                                    vertical: 10.0, horizontal: 10.0),
                                 child: RaisedButton(
                                     onPressed: () {
                                       final form = _formKey.currentState;
