@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:mixdrinks/constants.dart';
+import 'package:mixdrinks/screens/profile_information.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+final _firestore = Firestore.instance;
+FirebaseUser loggedInUser;
 
 class ProfileWidget extends StatelessWidget {
   static const String id = 'profile_screen';
+  final _auth = FirebaseAuth.instance;
+
   void printText(text) {
     print(text);
   }
@@ -34,7 +44,8 @@ class ProfileWidget extends StatelessWidget {
           ),
           FlatButton(
             onPressed: () {
-              printText('button1 pressed');
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfileInformation()));
             }, //TODO: Add Account Information Page
             child: Card(
                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
