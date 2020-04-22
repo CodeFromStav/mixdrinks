@@ -31,7 +31,7 @@ class ProfileWidget extends StatelessWidget {
             backgroundImage: AssetImage('images/profile_avatar.jpg'),
           ),
           Text(
-            'User Name',
+            loggedInUser.toString(),
             style: TextStyle(
               fontFamily: 'Pacifico',
               fontSize: 40.0,
@@ -43,7 +43,7 @@ class ProfileWidget extends StatelessWidget {
             height: 20.0,
             width: 150.0,
             child: Divider(
-              color: Colors.teal.shade100,
+              color: Color.fromRGBO(0,0,50, 100),
             ),
           ),
           FlatButton(
@@ -57,7 +57,7 @@ class ProfileWidget extends StatelessWidget {
                   title: Text(
                     'Account Information',
                     style: TextStyle(
-                      color: Colors.teal.shade100,
+                      color: Color.fromRGBO(0,0,50, 100),
                       fontFamily: 'Source Sans Pro',
                       fontSize: 20.0,
                     ),
@@ -76,7 +76,7 @@ class ProfileWidget extends StatelessWidget {
                     'My Ingredients',
                     style: TextStyle(
                         fontSize: 20.0,
-                        color: Colors.teal.shade100,
+                        color: Color.fromRGBO(0,0,50, 100),
                         fontFamily: 'Source Sans Pro'),
                   ),
                 )),
@@ -92,7 +92,7 @@ class ProfileWidget extends StatelessWidget {
                   title: Text(
                     'Sign Out',
                     style: TextStyle(
-                      color: Colors.teal.shade100,
+                      color: Color.fromRGBO(0,0,50, 100),
                       fontFamily: 'Source Sans Pro',
                       fontSize: 20.0,
                     ),

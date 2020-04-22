@@ -12,8 +12,8 @@ class UserIngredients extends StatefulWidget {
 
 class _UserIngredientsState extends State<UserIngredients> {
   Set ingredients;
-  List<String> myIngredients = new List();
-  List<String> drinkIngredients = [
+  static List<String> myIngredients = new List();
+  static List<String> drinkIngredients = [
     "Gin",
     "Vodka",
     "Lillet Blonde",
@@ -223,8 +223,15 @@ class _UserIngredientsState extends State<UserIngredients> {
             for(int i = 0; i < drinkIngredients.length; i++) {
               if ( text == drinkIngredients[i]) {
                 values[i] = !values[i];
+                if ( !myIngredients.contains(drinkIngredients[i])) {
+                      myIngredients.add(drinkIngredients[i]);
+                }
+                else {
+                  myIngredients.remove(drinkIngredients[i]);
+                }
               }
             }
+            print(myIngredients);
             });
           },
         ),
@@ -245,6 +252,7 @@ class _UserIngredientsState extends State<UserIngredients> {
 
   @override
   Widget build(BuildContext context) {
+    checkBoxes();
     return Scaffold(
       appBar: AppBar(
         title: Text("My Ingredients"),
@@ -256,6 +264,12 @@ class _UserIngredientsState extends State<UserIngredients> {
         },
       ),
     );
+  }
+
+  void checkBoxes() {
+    for (int index = 0; index < drinkIngredients.length; index++ ) {
+      if ( myIngredients[index].contains(drinkIngredients[index]) )
+    }
   }
 }
 
