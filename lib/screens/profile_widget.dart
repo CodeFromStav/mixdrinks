@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/user_ingredients.dart';
+import 'package:mixdrinks/components/user.dart';
 
 final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
@@ -22,6 +23,7 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getCurrentUser();
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +33,7 @@ class ProfileWidget extends StatelessWidget {
             backgroundImage: AssetImage('images/profile_avatar.jpg'),
           ),
           Text(
-            loggedInUser.toString(),
+            getUserName(loggedInUser.uid),
             style: TextStyle(
               fontFamily: 'Pacifico',
               fontSize: 40.0,
@@ -102,5 +104,38 @@ class ProfileWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  String getUserName(String userID)
+  {
+
+    String firstNameTemp;
+
+    _firestore
+        .collection("user")
+        .document(userID)
+        .snapshots()
+        .forEach((f) => firstNameTemp = f.data['firstname']);
+
+    _firestore
+        .collection("user")
+        .document(userID).snapshots().toList().toString();
+
+    print(firstNameTemp);
+    print(userID);
+    print(User().getFirstName('lERlQ68e6lNCn4tVU9Rrc9NmfQw2'));
+    return "test";
+    return User().getFirstName(userID);
   }
 }

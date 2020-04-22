@@ -5,12 +5,12 @@ import 'package:flutter/cupertino.dart';
 
 class User {
   final _firestore = Firestore.instance;
-  final _auth = FirebaseAuth.instance;
+
   FirebaseUser loggedInUser;
+  final _auth = FirebaseAuth.instance;
 
-  final databaseReference = Firestore.instance;
-
-  String tmp;
+  String firstNameTemp;
+  String lastNameTemp;
 
   static const String SocialDrinking = 'cooking';
   static const String CasualDrinking = 'hiking';
@@ -23,35 +23,12 @@ class User {
     HeavyDrinking: false
   };
 
-  Map data = {
-    'dataFirstname': null,
-    'dataLastname': '',
-    'dataSocialdrinking' : false,
-    'dataCsualdrinking' : false,
-    'dataHeavydrinking' : false,
-  };
-
   save() {
     print('Saving user using a web service');
+
     getCurrentUser();
 
-    databaseReference.collection("user").document(firstName).snapshots().forEach((f) => print('${f.data}}'));
-
-    databaseReference.collection("user").document(firstName).snapshots().forEach((f) => data = f.data);
-    print(('dataFirstname' == null));
-
-    print(data.containsValue(firstName));
-
-    if (('dataFirstname' == null) == true)
-      {
-        _firestore.collection("user").document(firstName).setData({
-          'firstname': firstName,
-          'lastname': lastName,
-          'socialdrinking' : passions.containsKey(SocialDrinking),
-          'casualdrinking' : passions.containsKey(CasualDrinking),
-          'heavydrinking' : passions.containsKey(HeavyDrinking),
-        });
-      }
+    print(getFirstName('lERlQ68e6lNCn4tVU9Rrc9NmfQw2'));
 
   }
 
@@ -60,9 +37,45 @@ class User {
       final user = await _auth.currentUser();
       if (user != null) {
         loggedInUser = user;
+        setFirestoreData(loggedInUser.uid);
       }
     } catch (e) {
       print(e);
     }
   }
+
+  void setFirestoreData(String userID) {
+    _firestore.collection("user").document(userID).setData({
+      'userid' : loggedInUser.uid,
+      'firstname': firstName,
+      'lastname': lastName,
+      'socialdrinking': passions[SocialDrinking],
+      'casualdrinking': passions[CasualDrinking],
+      'heavydrinking': passions[HeavyDrinking],
+    });
+  }
+
+  String getFirstName(String userID){
+    _firestore
+        .collection("user")
+        .document(userID)
+        .snapshots()
+        .forEach((f) => firstNameTemp = f.data['firstname']);
+
+    print("first name");
+    print(firstNameTemp);
+
+    return firstNameTemp;
+  }
+
+  String getLastName(String userID){
+    _firestore
+        .collection("user")
+        .document(userID)
+        .snapshots()
+        .forEach((f) => lastNameTemp = f.data['lastname']);
+
+    return lastNameTemp;
+  }
 }
+
