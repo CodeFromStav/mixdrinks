@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mixdrinks/components/search_widget.dart';
 import 'dart:convert';
 import 'package:mixdrinks/screens/drink_info.dart';
 import 'package:mixdrinks/components/drink_details.dart';
+import 'package:mixdrinks/screens/drinks_widget.dart';
 
 class DrinkSearch extends StatefulWidget {
   static const String id = 'drink_search';
@@ -10,6 +12,14 @@ class DrinkSearch extends StatefulWidget {
 }
 
 class _DrinkSearchState extends State<DrinkSearch> {
+
+  //Favorite Functionality:
+  //This set stores the drinks that the user favorited (set does not allow duplicates)
+  final List<String> _suggestions = <String>[];
+  final Set<String> _saved = Set<String>();   // Add this line.
+  final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
+
+
   // final formKey = new GlobalKey<FormState>();
   // final key = new GlobalKey<ScaffoldState>();
   final TextEditingController _filter = new TextEditingController();
@@ -44,7 +54,9 @@ class _DrinkSearchState extends State<DrinkSearch> {
     return Scaffold(
       appBar: _buildBar(context),
       body: Container(
-        child: _buildList(),
+        child: _buildList(''), //ADDED STRING PARAM
+
+
       ),
       resizeToAvoidBottomPadding: false,
     );
@@ -62,8 +74,14 @@ class _DrinkSearchState extends State<DrinkSearch> {
     );
   }
 
-  Widget _buildList() {
-    if (!(_searchText.isEmpty)) {
+  Widget _buildList( String drink) { //ADDED STRING PARAM
+    //allows us to see what drink is already saved
+
+    final alreadySaved = _saved.contains(drink);
+//    int index = 1;
+//    String saved = _saved.elementAt(index);
+
+    if ((_searchText.isNotEmpty)) {
       List tempList = new List();
       for (int i = 0; i < filteredNames.length; i++) {
         if (filteredNames[i]['name'].toLowerCase().contains(_searchText.toLowerCase())) {
@@ -77,7 +95,12 @@ class _DrinkSearchState extends State<DrinkSearch> {
       itemBuilder: (BuildContext context, int index) {
         return new ListTile(
           title: Text(filteredNames[index]['name']),
+          trailing: Icon(
+            alreadySaved ? Icons.favorite : Icons.favorite_border,
+            color: alreadySaved ? Colors.red : null,
+          ),
           onTap: () {
+
             Navigator.pushNamed(
               context,
               DrinkInfo.id,
@@ -89,6 +112,13 @@ class _DrinkSearchState extends State<DrinkSearch> {
                 filteredNames[index]["preparation"],
               ),
             );
+            setState((){
+              if(alreadySaved){
+                _saved.remove(drink);
+              } else{
+                _saved.add(_saved.elementAt(index));
+              }
+            });
           },
         );
       },
@@ -131,5 +161,31 @@ class _DrinkSearchState extends State<DrinkSearch> {
     });
   }
 
+  void _pushSaved(){
+//    Navigator.pushNamed(context, SearchWidget.id);
+//          final Iterable<ListTile> tiles = _saved.map(
+//                (String drink) {
+//
+//              return ListTile(
+//                title: Text('Test'),
+//              );
+//            },
+//          );
+//          final List<Widget> divided = ListTile
+//              .divideTiles(
+//            context: context,
+//            tiles: tiles,
+//          ).toList();
+//
+//          return Scaffold(         // Add 6 lines from here...
+//            appBar: AppBar(
+//              title: Text('Saved Suggestions'),
+//            ),
+//            body: ListView(children: divided),
+//          );                       // ... to here.
+////        },
+////      ),                       // ... to here.
+//    );
+  }
 
 }

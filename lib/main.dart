@@ -33,6 +33,7 @@ class MixDrinks extends StatelessWidget {
         DrinksWidget.id: (context) => DrinksWidget(),
         DrinkSearch.id: (context) => DrinkSearch(),
         DrinkInfo.id: (context) => DrinkInfo(),
+
       },
     );
   }
