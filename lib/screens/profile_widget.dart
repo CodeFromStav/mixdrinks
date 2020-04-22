@@ -65,7 +65,6 @@ class ProfileWidget extends StatelessWidget {
           ),
           FlatButton(
             onPressed: () {
-              printText('button2 pressed');
             }, //TODO: Add Ingredients List Page
             child: Card(
                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
