@@ -18,6 +18,12 @@ class _DrinkInfoState extends State<DrinkInfo> {
     formatIngredients = removeBrackets(args.ingredients.toString()).split("unit");
     //print(formatIngredients.toString());
     return MaterialApp(
+      theme:ThemeData(
+        primaryColor: Color(0xFFE5B143),
+
+
+      ),
+
       home: DefaultTabController(
           length: 4,
           child: Scaffold(

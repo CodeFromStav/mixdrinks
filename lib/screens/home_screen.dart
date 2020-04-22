@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   int _currentIndex = 0;
   final List<Widget> _children = [
     DrinkSearch(),
@@ -38,7 +39,8 @@ class _HomeState extends State<Home> {
             title: Text('Drinks'),
           ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Profile'))
+              icon: Icon(Icons.person),
+              title: Text('Profile'))
         ],
       ),
     );

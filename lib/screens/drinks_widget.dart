@@ -18,8 +18,11 @@ class DrinksWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.white),
+      decoration: BoxDecoration(color: Color(0xFFF3CC79),
+    ),
+
       child: Center(
+
         child: _buildGrid()
       )
     );
