@@ -5,6 +5,7 @@ import 'package:mixdrinks/screens/profile_information.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
+import 'package:mixdrinks/screens/user_ingredients.dart';
 
 final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
@@ -65,6 +66,8 @@ class ProfileWidget extends StatelessWidget {
           ),
           FlatButton(
             onPressed: () {
+              Navigator.push(context,
+                MaterialPageRoute(builder: (context) => UserIngredients()));
             }, //TODO: Add Ingredients List Page
             child: Card(
                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
