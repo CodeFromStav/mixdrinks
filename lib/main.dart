@@ -20,7 +20,7 @@ class MixDrinks extends StatelessWidget {
       theme: ThemeData(
           // TODO: the following line of code does not work with the welcome, login, registration screens
           // brightness: Brightness.dark,
-          primaryColor: Colors.blueGrey
+          primaryColor: Color(0xFFE5B143),
       ),
       initialRoute: WelcomeScreen.id,
       routes: {

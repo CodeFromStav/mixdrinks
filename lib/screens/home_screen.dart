@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   int _currentIndex = 0;
   final List<Widget> _children = [
     DrinkSearch(),
@@ -23,7 +24,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Color(0xFFF3CC79),
       body: _children[_currentIndex], // new
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped, // new
@@ -38,7 +39,8 @@ class _HomeState extends State<Home> {
             title: Text('Drinks'),
           ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Profile'))
+              icon: Icon(Icons.person),
+              title: Text('Profile'))
         ],
       ),
     );
