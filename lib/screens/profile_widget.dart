@@ -4,6 +4,7 @@ import 'package:mixdrinks/constants.dart';
 import 'package:mixdrinks/screens/profile_information.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mixdrinks/screens/login_screen.dart';
 
 final _firestore = Firestore.instance;
 FirebaseUser loggedInUser;
@@ -77,7 +78,25 @@ class ProfileWidget extends StatelessWidget {
                         fontFamily: 'Source Sans Pro'),
                   ),
                 )),
-          )
+          ),
+          FlatButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
+            }, //TODO: Add Account Information Page
+            child: Card(
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                child: ListTile(
+                  title: Text(
+                    'Sign Out',
+                    style: TextStyle(
+                      color: Colors.teal.shade100,
+                      fontFamily: 'Source Sans Pro',
+                      fontSize: 20.0,
+                    ),
+                  ),
+                )),
+          ),
         ],
       ),
     );
