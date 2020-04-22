@@ -267,8 +267,9 @@ class _UserIngredientsState extends State<UserIngredients> {
   }
 
   void checkBoxes() {
-    for (int index = 0; index < drinkIngredients.length; index++ ) {
-      if ( myIngredients[index].contains(drinkIngredients[index]) )
+    for (int index = 0; index < myIngredients.length; index++ ) {
+      int element = drinkIngredients.indexOf(myIngredients[index]);
+      values[element] = true;
     }
   }
 }
