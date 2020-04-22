@@ -220,29 +220,11 @@ class _UserIngredientsState extends State<UserIngredients> {
           value: value,
           onChanged: (bool newVal) {
             setState(() {
-              switch (text) {
-                case "Gin":
-                  ginVal = newVal;
-                  break;
-                case "Vodka":
-                  vodkaVal = newVal;
-                  break;
-                case "Lillet Blonde":
-                  lilletBlondeVal = newVal;
-                  break;
-                case "White Rum":
-                  whiteRumVal = newVal;
-                  break;
-                case "Lime juice":
-                  limejuiceVal = newVal;
-                  break;
-                case "Syrup":
-                  syrupVal = newVal;
-                  break;
-                case "Campari":
-                  campariVal = newVal;
-                  break;
+            for(int i = 0; i < drinkIngredients.length; i++) {
+              if ( text == drinkIngredients[i]) {
+                values[i] = !values[i];
               }
+            }
             });
           },
         ),
