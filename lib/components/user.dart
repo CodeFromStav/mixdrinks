@@ -9,7 +9,7 @@ class User {
   FirebaseUser loggedInUser;
   final _auth = FirebaseAuth.instance;
 
-  String firstNameTemp;
+  static String firstNameTemp;
   String lastNameTemp;
 
   static const String SocialDrinking = 'cooking';
@@ -27,9 +27,6 @@ class User {
     print('Saving user using a web service');
 
     getCurrentUser();
-
-    print(getFirstName('lERlQ68e6lNCn4tVU9Rrc9NmfQw2'));
-
   }
 
   void getCurrentUser() async {
@@ -46,7 +43,7 @@ class User {
 
   void setFirestoreData(String userID) {
     _firestore.collection("user").document(userID).setData({
-      'userid' : loggedInUser.uid,
+      'userid': loggedInUser.uid,
       'firstname': firstName,
       'lastname': lastName,
       'socialdrinking': passions[SocialDrinking],
@@ -55,20 +52,17 @@ class User {
     });
   }
 
-  String getFirstName(String userID){
+  String getFirstName(String userID) {
     _firestore
         .collection("user")
         .document(userID)
         .snapshots()
-        .forEach((f) => firstNameTemp = f.data['firstname']);
-
-    print("first name");
-    print(firstNameTemp);
+        .forEach((f) => returnFirstName(f.data['firstname']));
 
     return firstNameTemp;
   }
 
-  String getLastName(String userID){
+  Future<String> getLastName(String userID) async {
     _firestore
         .collection("user")
         .document(userID)
@@ -76,6 +70,11 @@ class User {
         .forEach((f) => lastNameTemp = f.data['lastname']);
 
     return lastNameTemp;
+  }
+
+  void returnFirstName(String first)
+  {
+    firstNameTemp = first;
   }
 }
 
