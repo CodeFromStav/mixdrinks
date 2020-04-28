@@ -1,8 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:mixdrinks/screens/user_ingredients.dart';
+import 'package:mixdrinks/components/search_widget.dart';
+import 'dart:convert';
+import 'package:mixdrinks/screens/drink_info.dart';
+import 'package:mixdrinks/components/drink_details.dart';
+import 'package:mixdrinks/screens/drinks_widget.dart';
 
-class DrinksWidget extends StatelessWidget {
+class DrinksWidget extends StatefulWidget {
   static const String id = 'drinks_screen';
+
+  @override
+  _DrinksWidgetState createState() => new _DrinksWidgetState();
+
+}
+class _DrinksWidgetState extends State<DrinksWidget> {
+
+
+//  final String itemHolder;
+//  DrinksWidget({Key key, @required this.itemHolder}) : super(key: key);
+
+  goBack(BuildContext context){
+    Navigator.pop(context);
+  }
+
   Widget _buildGrid() => GridView.extent(
       maxCrossAxisExtent: 150,
       padding: const EdgeInsets.all(4),

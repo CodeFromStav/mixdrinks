@@ -79,7 +79,10 @@ class _DrinkInfoState extends State<DrinkInfo> {
                               margin: EdgeInsets.all(8),
                               padding: EdgeInsets.all(8),
                               //child: Center(child: Text('Unit ${formatIngredients[index + 1]}')),
-                              child: Text('Unit ${formatIngredients[index + 1]}'),
+
+                              child:
+                              Text('Unit ${formatIngredients[index + 1]}'),
+
                             );
                           },
 
