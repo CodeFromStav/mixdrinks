@@ -10,11 +10,11 @@ class User {
   final _auth = FirebaseAuth.instance;
 
   static String firstNameTemp;
-  String lastNameTemp;
+  static String lastNameTemp;
 
-  static const String SocialDrinking = 'cooking';
-  static const String CasualDrinking = 'hiking';
-  static const String HeavyDrinking = 'traveling';
+  static const String SocialDrinking = 'socialDrinking';
+  static const String CasualDrinking = 'casualDrinking';
+  static const String HeavyDrinking = 'heavyDrinking';
   String firstName = '';
   String lastName = '';
   Map passions = {
@@ -62,19 +62,26 @@ class User {
     return firstNameTemp;
   }
 
-  Future<String> getLastName(String userID) async {
-    _firestore
-        .collection("user")
-        .document(userID)
-        .snapshots()
-        .forEach((f) => lastNameTemp = f.data['lastname']);
-
-    return lastNameTemp;
-  }
-
   void returnFirstName(String first)
   {
     firstNameTemp = first;
   }
+
+  String getLastName(String userID) {
+    _firestore
+        .collection("user")
+        .document(userID)
+        .snapshots()
+        .forEach((f) => returnLastName(f.data['lastname']));
+
+    return lastNameTemp;
+  }
+
+  void returnLastName(String last)
+  {
+    lastNameTemp = last;
+  }
+
+
 }
 

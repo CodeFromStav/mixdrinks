@@ -39,10 +39,6 @@ class ProfileWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          CircleAvatar(
-            radius: 50.0,
-            backgroundImage: AssetImage('images/profile_avatar.jpg'),
-          ),
           Text(
             getUserName(),
             style: TextStyle(
@@ -65,7 +61,7 @@ class ProfileWidget extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => ProfileInformation()));
-            }, //TODO: Add Account Information Page
+            },
             child: Card(
                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                 child: ListTile(
@@ -83,7 +79,7 @@ class ProfileWidget extends StatelessWidget {
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => UserIngredients()));
-            }, //TODO: Add Ingredients List Page
+            },
             child: Card(
                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                 child: ListTile(
@@ -100,7 +96,7 @@ class ProfileWidget extends StatelessWidget {
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => LoginScreen()));
-            }, //TODO: Add Account Information Page
+            },
             child: Card(
                 margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                 child: ListTile(
@@ -121,20 +117,24 @@ class ProfileWidget extends StatelessWidget {
 
   String getUserName() {
     String firstNameTemp = "Anonymous";
+    String lastNameTemp = "User";
+    String combinedName;
 
-    if(loggedInUser != null)
-    {
-        firstNameTemp = User().getFirstName(loggedInUser.uid);
+    if (loggedInUser != null) {
+      firstNameTemp = User().getFirstName(loggedInUser.uid);
+      lastNameTemp = User().getLastName(loggedInUser.uid);
     }
 
-    if(firstNameTemp == null)
-      {
-        return firstNameTemp = "Anonymous";
-      }
+    if (firstNameTemp == null) {
+      firstNameTemp = "Anonymous";
+    }
 
-    return firstNameTemp;
+    if (lastNameTemp == null) {
+      firstNameTemp = "User";
+    }
+
+    combinedName = firstNameTemp + " " + lastNameTemp;
+
+    return combinedName;
   }
 }
-
-
-
