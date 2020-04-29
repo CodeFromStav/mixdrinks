@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mixdrinks/components/search_widget.dart';
 import 'dart:convert';
 import 'package:mixdrinks/screens/drink_info.dart';
 import 'package:mixdrinks/components/drink_details.dart';
