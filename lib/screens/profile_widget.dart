@@ -179,7 +179,7 @@ class ProfileWidget extends StatelessWidget {
     }
 
     if (lastNameTemp == null) {
-      firstNameTemp = "User";
+      lastNameTemp = "User";
     }
 
     combinedName = firstNameTemp.trim() + " " +
