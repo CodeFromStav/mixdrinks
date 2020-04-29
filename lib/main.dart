@@ -18,8 +18,6 @@ class MixDrinks extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          // TODO: the following line of code does not work with the welcome, login, registration screens
-          // brightness: Brightness.dark,
           primaryColor: Color(0xFFE5B143),
       ),
       initialRoute: WelcomeScreen.id,

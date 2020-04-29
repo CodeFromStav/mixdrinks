@@ -3,23 +3,33 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 
+// Class that is used to store the information associated with a user's
+//    profile information page
 class User {
+  // Creating a firestore instance to add and grab information from the
+  //    firestore cloud
   final _firestore = Firestore.instance;
 
+  // Creating a firebase user object to grab the unique id associated to a user
   FirebaseUser loggedInUser;
   final _auth = FirebaseAuth.instance;
 
+  // Temp variables associated to the user's information
+  // These variables are used in the get functions
   static String firstNameTemp;
   static String lastNameTemp;
   static String socialDrinkingTemp;
   static String casualDrinkingTemp;
   static String heavyDrinkingTemp;
 
+  // Variables that are set and used in the profile information page
   static const String SocialDrinking = 'socialDrinking';
   static const String CasualDrinking = 'casualDrinking';
   static const String HeavyDrinking = 'heavyDrinking';
   String firstName = '';
   String lastName = '';
+
+  // Map object to store the information associated with a user's passion
   Map passions = {
     SocialDrinking: false,
     CasualDrinking: false,
