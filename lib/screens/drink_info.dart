@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mixdrinks/screens/drink_search.dart';
 import 'package:mixdrinks/components/drink_details.dart';
 import 'home_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DrinkInfo extends StatefulWidget {
   static const String id = 'drink_info';
@@ -15,7 +16,10 @@ class _DrinkInfoState extends State<DrinkInfo> {
   Widget build(BuildContext context) {
     final DrinkDetails args = ModalRoute.of(context).settings.arguments;
     List<String> formatIngredients = new List<String>();
-    formatIngredients = removeBrackets(args.ingredients.toString()).split("unit");
+    formatIngredients = removeBrackets(args.ingredients.toString()).split(",");
+    for (int i = 0; i < formatIngredients.length; i++) {
+      print(formatIngredients[i]);
+    }
     //print(formatIngredients.toString());
     return MaterialApp(
       theme:ThemeData(
@@ -27,10 +31,10 @@ class _DrinkInfoState extends State<DrinkInfo> {
       home: DefaultTabController(
           length: 4,
           child: Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               title: Text(args.name),
-              leading: BackButton(
-                color: Colors.black,
+              leading: BackButton( color: Colors.black,
                 onPressed: () {
                   Navigator.pushNamed(context, Home.id);
                 },
@@ -46,43 +50,74 @@ class _DrinkInfoState extends State<DrinkInfo> {
               ),
             ),
             body: TabBarView(
+
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       Container(
                         margin: EdgeInsets.all(8),
                         padding: EdgeInsets.all(8),
-                        child: Text(args.glass.toString()),
+                        child: Text(args.glass.toString(),
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.pacifico(
+                            fontSize: 20,
+                          ),
+                        ),
                       ),
-                      Image.asset("images/" + args.name.toString() + ".jpg"),
+                      ClipRRect(
+
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: Image.asset("images/" + args.name.toString() + ".jpg",
+                          width: 300,
+                          height: 300,
+                        ),
+
+                      ),
+
                     ],
                   ),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Container(
                         margin: EdgeInsets.all(8),
                         padding: EdgeInsets.all(8),
-                        child: Text(args.category.toString()),
+                        child: Text(args.category.toString(),
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.pacifico(
+                            fontSize: 20,
+                          )
+                        ),
                       ),
                     ],
                   ),
                   Column(
                     children: <Widget>[
-                      Expanded(
+                     Expanded(
                         child: ListView.builder(
                           padding: const EdgeInsets.all(8),
-                          itemCount: formatIngredients.length - 1,
+                          itemCount: formatIngredients.length,
+
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
-                              margin: EdgeInsets.all(8),
-                              padding: EdgeInsets.all(8),
+                              margin: EdgeInsets.only(left: 8, right: 8),
+                              padding: EdgeInsets.only(left: 8, right: 8, bottom: 5),
                               //child: Center(child: Text('Unit ${formatIngredients[index + 1]}')),
 
                               child:
-                              Text('Unit ${formatIngredients[index + 1]}'),
+                                Text((() {
+                                  List<String> oneIngredient = formatIngredients[index].split(":");
+                                  print(oneIngredient);
+                                  if (index != 0 && formatIngredients[index].contains("unit")) {
+                                    return "-----------------" +  "\n" + "-----------------" + "\n" + oneIngredient[0].trim().toUpperCase() + ": " + oneIngredient[1].trim();}
+                                    return oneIngredient[0].trim().toUpperCase() + ": " + oneIngredient[1].trim();
+                                })(),
+                                style: GoogleFonts.pacifico(
+                                  fontSize: 15,
 
+                                  ),
+                                ),
                             );
                           },
 
@@ -97,7 +132,11 @@ class _DrinkInfoState extends State<DrinkInfo> {
                       Container(
                         margin: EdgeInsets.all(8),
                         padding: EdgeInsets.all(8),
-                        child: Text(args.preparation.toString()),
+                        child: Text(args.preparation.toString(),
+                          style: GoogleFonts.pacifico(
+                            fontSize: 20,
+                          ),
+                        ),
                       ),
                     ],
                   ),
