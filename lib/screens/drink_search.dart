@@ -56,78 +56,92 @@ class _DrinkSearchState extends State<DrinkSearch> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+
       appBar: _buildBar(context),
+
       body: Container(
         child: _buildList(), //ADDED STRING PARAM
+
       ),
-      
+
+
       resizeToAvoidBottomPadding: false,
 
     );
 
 
 
+
+
   }
 
 
 
-  Widget _build(BuildContext context){
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: _buildBar(context),
-
-        body:
-
-        _itemLength != null
-
-            ? ListView.builder(
-          itemCount: _itemLength,
-          itemBuilder: (context, index) => ListTile(
-            title: Text(index.toString()),
-            trailing: IconButton(
-              onPressed: () => setState(
-                      () => _isFavorited[index] = !_isFavorited[index]),
-              icon: _isFavorited[index]
-                  ? Icon(Icons.star)
-                  : Icon(Icons.star_border),
-            ),
-          ),
-        )
-            : StreamBuilder(
-            initialData: 0,
-            stream: Stream.fromFuture(
-              Future.delayed(
-                  Duration(
-                    seconds: 1,
-                  ),
-                      () => 20),
-            ),
-            builder: (context, snapshot) {
-              if (snapshot.data > 0) {
-                _itemLength = snapshot.data;
-                _isFavorited =
-                List<bool>.generate(_itemLength, (_) => false);
-                return ListView.builder(
-                  itemCount: _itemLength,
-                  itemBuilder: (context, index) => ListTile(
-                    title: Text(index.toString()),
-                    trailing: IconButton(
-                      onPressed: () => setState(
-                              () => _isFavorited[index] = !_isFavorited[index]),
-                      icon: _isFavorited[index]
-                          ? Icon(Icons.star)
-                          : Icon(Icons.star_border),
-                    ),
-                  ),
-                );
-              }
-              return Center(child: CircularProgressIndicator());
-            }),
-      ),
-    );
-
-  }
+//  Widget _build(BuildContext context){
+//
+//      return Scaffold(
+////        debugShowCheckedModeBanner: false,
+//
+//        appBar: _buildBar(context),
+//
+//        body: Container(
+//          child: _buildList(),
+//
+////            child:
+////        Container(
+////          child: _buildList(),
+////        )
+//
+//        _itemLength != null
+//
+//            ? ListView.builder(
+//          itemCount: _itemLength,
+//          itemBuilder: (context, index) => ListTile(
+//            title: Text(index.toString()),
+//            trailing: IconButton(
+//              onPressed: () => setState(
+//                      () => _isFavorited[index] = !_isFavorited[index]),
+//              icon: _isFavorited[index]
+//                  ? Icon(Icons.star)
+//                  : Icon(Icons.star_border),
+//            ),
+//          ),
+//        )
+//            : StreamBuilder(
+//            initialData: 0,
+//            stream: Stream.fromFuture(
+//              Future.delayed(
+//                  Duration(
+//                    seconds: 1,
+//                  ),
+//                      () => 20),
+//            ),
+//            builder: (context, snapshot) {
+//              if (snapshot.data > 0) {
+//                _itemLength = snapshot.data;
+//                _isFavorited =
+//                List<bool>.generate(_itemLength, (_) => false);
+//                return ListView.builder(
+//                  itemCount: _itemLength,
+//                  itemBuilder: (context, index) => ListTile(
+//                    title: Text(index.toString()),
+//                    trailing: IconButton(
+//                      onPressed: () => setState(
+//                              () => _isFavorited[index] = !_isFavorited[index]),
+//                      icon: _isFavorited[index]
+//                          ? Icon(Icons.star)
+//                          : Icon(Icons.star_border),
+//                    ),
+//                  ),
+//                );
+//              }
+//              return Center(child: CircularProgressIndicator());
+//            }),
+//    ),
+//      );
+//
+//
+//  }
 
   Widget _buildBar(BuildContext context) {
     return new AppBar(
@@ -138,9 +152,9 @@ class _DrinkSearchState extends State<DrinkSearch> {
         onPressed: _searchPressed,
 
       ),
-//      actions: <Widget>[      // Add 3 lines from here...
-//        new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
-//      ],                      // ... to here.
+      actions: <Widget>[      // Add 3 lines from here...
+        new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
+      ],                      // ... to here.
     );
 
 
@@ -149,7 +163,7 @@ class _DrinkSearchState extends State<DrinkSearch> {
   Widget _buildList( ) { //ADDED STRING PARAM
 
     //allows us to see what drink is already saved
-//    final alreadySaved = _saved.contains(filteredNames.toString());
+    final alreadySaved = _saved.contains(filteredNames.toString());
 //    int index = 1;
 
     if ((_searchText.isNotEmpty)) {
@@ -171,10 +185,10 @@ class _DrinkSearchState extends State<DrinkSearch> {
 
               child:  ListTile(
                       title: Text(filteredNames[index]['name']),
-//                      trailing: Icon(
-//                      alreadySaved ? Icons.favorite : Icons.favorite_border,
-//                      color: alreadySaved ? Colors.red : null,
-//                      ),
+                      trailing: Icon(
+                      alreadySaved ? Icons.favorite : Icons.favorite_border,
+                      color: alreadySaved ? Colors.red : null,
+                      ),
                 onTap: () {
 //                  print(_saved);
                   Navigator.pushNamed(
@@ -189,29 +203,29 @@ class _DrinkSearchState extends State<DrinkSearch> {
                     ),
                   );
 
-//                  print("state set");
-////                  print(filteredNames);
-//
-//                  setState(() {
-////                    for (var value in filteredNames) {
-////                      index += index;
-////                      String value = filteredNames.toString();
-////                    }
-//
-//                    if(alreadySaved){
-//                      _saved.remove(filteredNames.toString());
-//                      print("Drink " + filteredNames.toString() + "REMOVED!");
+                  print("state set");
+//                  print(filteredNames);
+
+                  setState(() {
+//                    for (var value in filteredNames) {
+//                      index += index;
+//                      String value = filteredNames.toString();
 //                    }
-//                    else{
-//                      _saved.add(filteredNames.toString());
-//                      print("Drink " + filteredNames.toString() + "ADDED!");
-////                      int index = 0;
-//
-//                    }
-////                    print(_saved);
-//
-//
-//                  });
+
+                    if(alreadySaved){
+                      _saved.remove(filteredNames.toString());
+                      print("Drink " + filteredNames.toString() + "REMOVED!");
+                    }
+                    else{
+                      _saved.add(filteredNames.toString());
+                      print("Drink " + filteredNames.toString() + "ADDED!");
+//                      int index = 0;
+
+                    }
+//                    print(_saved);
+
+
+                  });
 
                   },
               ),
@@ -284,43 +298,43 @@ class _DrinkSearchState extends State<DrinkSearch> {
     });
   }
 
-//  void _pushSaved() {
-//    Navigator.of(context).push<Set>(
-//         MaterialPageRoute(
-//        builder: (BuildContext context){
-//          final Iterable<ListTile> tiles = _saved.map(
-//                (String drink) {
-//              return new ListTile(
-//                title: new Text(
-//                  drink.toString(),
-//                  style: _biggerFont,
-//                ),
-//              );
-//            },
-//          );
-//          final List<Widget> divided = ListTile
-//              .divideTiles(
-//            context: context,
-//            tiles: tiles,
-//          )
-//              .toList();
-//          return new Scaffold(         // Add 6 lines from here...
+  void _pushSaved() {
+    Navigator.of(context).push<Set>(
+         MaterialPageRoute(
+        builder: (BuildContext context){
+          final Iterable<ListTile> tiles = _saved.map(
+                (String drink) {
+              return new ListTile(
+                title: new Text(
+                  drink.toString(),
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final List<Widget> divided = ListTile
+              .divideTiles(
+            context: context,
+            tiles: tiles,
+          )
+              .toList();
+          return new Scaffold(         // Add 6 lines from here...
+            appBar: new AppBar(
+              title: const Text('Favorited Drinks'),
+            ),
+            body: new ListView(children: divided),
+          );                           // ... to here.
+//          return new Scaffold(
 //            appBar: new AppBar(
 //              title: const Text('Saved Suggestions'),
 //            ),
 //            body: new ListView(children: divided),
-//          );                           // ... to here.
-////          return new Scaffold(
-////            appBar: new AppBar(
-////              title: const Text('Saved Suggestions'),
-////            ),
-////            body: new ListView(children: divided),
-////          );
-//
-//
-//        },
-//      ),
-//    );
-//  }
+//          );
+
+
+        },
+      ),
+    );
+  }
 
 }
