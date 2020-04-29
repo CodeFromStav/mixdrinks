@@ -11,6 +11,9 @@ class User {
 
   static String firstNameTemp;
   static String lastNameTemp;
+  static String socialDrinkingTemp;
+  static String casualDrinkingTemp;
+  static String heavyDrinkingTemp;
 
   static const String SocialDrinking = 'socialDrinking';
   static const String CasualDrinking = 'casualDrinking';
@@ -82,6 +85,50 @@ class User {
     lastNameTemp = last;
   }
 
+  String getSocialDrinker(String userID) {
+    _firestore
+        .collection("user")
+        .document(userID)
+        .snapshots()
+        .forEach((f) => returnSocialDrinker((f.data['socialdrinking']).toString()));
+
+    return socialDrinkingTemp;
+  }
+
+  void returnSocialDrinker(String socialDrinker)
+  {
+    socialDrinkingTemp = socialDrinker;
+  }
+
+  String getCasualDrinker(String userID) {
+    _firestore
+        .collection("user")
+        .document(userID)
+        .snapshots()
+        .forEach((f) => returnCasualDrinker((f.data['casualdrinking']).toString()));
+
+    return casualDrinkingTemp;
+  }
+
+  void returnCasualDrinker(String casualDrinker)
+  {
+    casualDrinkingTemp = casualDrinker;
+  }
+
+  String getHeavyDrinker(String userID) {
+    _firestore
+        .collection("user")
+        .document(userID)
+        .snapshots()
+        .forEach((f) => returnHeavyDrinker((f.data['heavydrinking']).toString()));
+
+    return heavyDrinkingTemp;
+  }
+
+  void returnHeavyDrinker(String heavyDrinker)
+  {
+    heavyDrinkingTemp = heavyDrinker;
+  }
 
 }
 

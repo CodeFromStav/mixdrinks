@@ -46,6 +46,55 @@ class ProfileWidget extends StatelessWidget {
               fontSize: 40.0,
               color: Colors.black,
               fontWeight: FontWeight.bold,
+
+            ),
+          ),
+          SizedBox(
+            height: 20.0,
+            width: 150.0,
+            child: Divider(
+              color: Color.fromRGBO(0, 0, 50, 100),
+            ),
+          ),
+          Text(
+            getSocialDrinker(),
+            style: TextStyle(
+              fontFamily: 'Pacifico',
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 20.0,
+            width: 150.0,
+            child: Divider(
+              color: Color.fromRGBO(0, 0, 50, 100),
+            ),
+          ),
+          Text(
+            getCasualDrinker(),
+            style: TextStyle(
+              fontFamily: 'Pacifico',
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 20.0,
+            width: 150.0,
+            child: Divider(
+              color: Color.fromRGBO(0, 0, 50, 100),
+            ),
+          ),
+          Text(
+            getHeavyDrinker(),
+            style: TextStyle(
+              fontFamily: 'Pacifico',
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
           ),
           SizedBox(
@@ -133,8 +182,78 @@ class ProfileWidget extends StatelessWidget {
       firstNameTemp = "User";
     }
 
-    combinedName = firstNameTemp + " " + lastNameTemp;
+    combinedName = firstNameTemp.trim() + " " +
+        lastNameTemp.trim();
 
     return combinedName;
+  }
+
+  String getSocialDrinker() {
+    String socialDrinkerTemp = "Not Answered Yet";
+
+    if (loggedInUser != null) {
+      socialDrinkerTemp = User().getSocialDrinker(loggedInUser.uid);
+
+      if (socialDrinkerTemp == "true")
+        {
+          socialDrinkerTemp = "I am a Social Drinker!";
+        }
+      else
+        {
+          socialDrinkerTemp = "I am not a Social Drinker!";
+        }
+    }
+
+    if (socialDrinkerTemp == null) {
+      socialDrinkerTemp = "Not Answered Yet";
+    }
+
+    return socialDrinkerTemp;
+  }
+
+  String getCasualDrinker() {
+    String casualDrinkingTemp = "Not Answered Yet";
+
+    if (loggedInUser != null) {
+      casualDrinkingTemp = User().getCasualDrinker(loggedInUser.uid);
+
+      if (casualDrinkingTemp == "true")
+      {
+        casualDrinkingTemp = "I am a Casual Drinker!";
+      }
+      else
+      {
+        casualDrinkingTemp = "I am not a Casual Drinker!";
+      }
+    }
+
+    if (casualDrinkingTemp == null) {
+      casualDrinkingTemp = "Not Answered Yet";
+    }
+
+    return casualDrinkingTemp;
+  }
+
+  String getHeavyDrinker() {
+    String heavyDrinkingTemp = "Not Answered Yet";
+
+    if (loggedInUser != null) {
+      heavyDrinkingTemp = User().getHeavyDrinker(loggedInUser.uid);
+
+      if (heavyDrinkingTemp == "true")
+      {
+        heavyDrinkingTemp = "I am a Heavy Drinker!";
+      }
+      else
+      {
+        heavyDrinkingTemp = "I am not a Heavy Drinker!";
+      }
+    }
+
+    if (heavyDrinkingTemp == null) {
+      heavyDrinkingTemp = "Not Answered Yet";
+    }
+
+    return heavyDrinkingTemp;
   }
 }
