@@ -5,17 +5,25 @@ import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/user_ingredients.dart';
 import 'package:mixdrinks/components/user.dart';
 
+<<<<<<< HEAD
 // Creating a firebase user object to grab the unique id associated to a user
 FirebaseUser loggedInUser;
 
 // Class for displaying profile screen to user
+=======
+FirebaseUser loggedInUser;
+
+>>>>>>> master
 class ProfileWidget extends StatelessWidget {
   // Set screen's id for page navigation
   static const String id = 'profile_screen';
 
+<<<<<<< HEAD
   // Create firebase instance
   final _auth = FirebaseAuth.instance;
 
+=======
+>>>>>>> master
   @override
   Widget build(BuildContext context) {
     // Retrieve current user and set equal to firebase loggedInUser
@@ -167,13 +175,19 @@ class ProfileWidget extends StatelessWidget {
     );
   }
 
+<<<<<<< HEAD
   // Retrieve the current user using the app
   // Information is tied to login information
+=======
+>>>>>>> master
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
       if (user != null) {
+<<<<<<< HEAD
         // Storing user to firebaseuser variable
+=======
+>>>>>>> master
         loggedInUser = user;
       }
     } catch (e) {
@@ -181,8 +195,11 @@ class ProfileWidget extends StatelessWidget {
     }
   }
 
+<<<<<<< HEAD
   // Get first name and last name from firestore cloud, combine them
   //    and then return as the username
+=======
+>>>>>>> master
   String getUserName() {
     // Temp variables
     String firstNameTemp = "Anonymous";
