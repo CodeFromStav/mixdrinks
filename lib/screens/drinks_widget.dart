@@ -132,7 +132,7 @@ class DrinksWidget extends StatelessWidget {
 
   }
 
-  bool isBreweable() {
+  void isBreweable() {
     try {
       for (int i = 0; i < tempList.length; i++) {
         drinkStatus.add(canMake(tempList[i]['ingredients']));

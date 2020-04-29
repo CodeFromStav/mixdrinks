@@ -4,6 +4,7 @@ import 'dart:core';
 
 class UserIngredients extends StatefulWidget {
   UserIngredients({Key key, this.title}) : super(key: key);
+  static List<String> ingredients = _UserIngredientsState.myIngredients;
   final String title;
 
   @override
