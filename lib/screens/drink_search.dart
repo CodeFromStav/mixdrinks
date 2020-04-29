@@ -17,10 +17,14 @@ class _DrinkSearchState extends State<DrinkSearch> {
   final List<String> _suggestions = <String>[];
   final Set<String> _saved = Set<String>();   // Add this line.
   final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
+  static List<String> myDrinks = new List();
+
+  //new implementation here
+  int _itemLength;
+  List<bool> _isFavorited = [];
 
 
-  // final formKey = new GlobalKey<FormState>();
-  // final key = new GlobalKey<ScaffoldState>();
+
   final TextEditingController _filter = new TextEditingController();
   String _searchText = "";
   List names = new List();
@@ -50,15 +54,79 @@ class _DrinkSearchState extends State<DrinkSearch> {
   }
 
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: _buildBar(context),
       body: Container(
-        child: _buildList(''), //ADDED STRING PARAM
+        child: _buildList(), //ADDED STRING PARAM
       ),
-
-
+      
       resizeToAvoidBottomPadding: false,
+
     );
+
+
+
+  }
+
+
+
+  Widget _build(BuildContext context){
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: _buildBar(context),
+
+        body:
+
+        _itemLength != null
+
+            ? ListView.builder(
+          itemCount: _itemLength,
+          itemBuilder: (context, index) => ListTile(
+            title: Text(index.toString()),
+            trailing: IconButton(
+              onPressed: () => setState(
+                      () => _isFavorited[index] = !_isFavorited[index]),
+              icon: _isFavorited[index]
+                  ? Icon(Icons.star)
+                  : Icon(Icons.star_border),
+            ),
+          ),
+        )
+            : StreamBuilder(
+            initialData: 0,
+            stream: Stream.fromFuture(
+              Future.delayed(
+                  Duration(
+                    seconds: 1,
+                  ),
+                      () => 20),
+            ),
+            builder: (context, snapshot) {
+              if (snapshot.data > 0) {
+                _itemLength = snapshot.data;
+                _isFavorited =
+                List<bool>.generate(_itemLength, (_) => false);
+                return ListView.builder(
+                  itemCount: _itemLength,
+                  itemBuilder: (context, index) => ListTile(
+                    title: Text(index.toString()),
+                    trailing: IconButton(
+                      onPressed: () => setState(
+                              () => _isFavorited[index] = !_isFavorited[index]),
+                      icon: _isFavorited[index]
+                          ? Icon(Icons.star)
+                          : Icon(Icons.star_border),
+                    ),
+                  ),
+                );
+              }
+              return Center(child: CircularProgressIndicator());
+            }),
+      ),
+    );
+
   }
 
   Widget _buildBar(BuildContext context) {
@@ -70,20 +138,19 @@ class _DrinkSearchState extends State<DrinkSearch> {
         onPressed: _searchPressed,
 
       ),
-      actions: <Widget>[      // Add 3 lines from here...
-        new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
-      ],                      // ... to here.
+//      actions: <Widget>[      // Add 3 lines from here...
+//        new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
+//      ],                      // ... to here.
     );
 
 
   }
 
-  Widget _buildList( String drink ) { //ADDED STRING PARAM
-    //allows us to see what drink is already saved
+  Widget _buildList( ) { //ADDED STRING PARAM
 
-    final alreadySaved = _saved.contains(drink.toString());
+    //allows us to see what drink is already saved
+//    final alreadySaved = _saved.contains(filteredNames.toString());
 //    int index = 1;
-//    String saved = _saved.elementAt(index);
 
     if ((_searchText.isNotEmpty)) {
       List tempList = new List();
@@ -97,20 +164,19 @@ class _DrinkSearchState extends State<DrinkSearch> {
     return ListView.builder(
       itemCount: names == null ? 0 : filteredNames.length,
       itemBuilder: (BuildContext context, int index) {
+
         return Column(
           children:[
               Container(
 
-
-
               child:  ListTile(
                       title: Text(filteredNames[index]['name']),
-                      trailing: Icon(
-                      alreadySaved ? Icons.favorite : Icons.favorite_border,
-                      color: alreadySaved ? Colors.red : null,
-                      ),
+//                      trailing: Icon(
+//                      alreadySaved ? Icons.favorite : Icons.favorite_border,
+//                      color: alreadySaved ? Colors.red : null,
+//                      ),
                 onTap: () {
-//                  print("test");
+//                  print(_saved);
                   Navigator.pushNamed(
                     context,
                     DrinkInfo.id,
@@ -122,41 +188,64 @@ class _DrinkSearchState extends State<DrinkSearch> {
                       filteredNames[index]["preparation"],
                     ),
                   );
-                  print("state set");
 
-                  setState((){
-                    if(alreadySaved){
-                      _saved.remove(drink);
-                    } else{
-                      _saved.add(drink);
-                      print(_saved);
-//                      getItemAndNavigate(drink, context);
-//                      _pushSaved();
-//                        _saved.add(drink);
-                    }
-                  });
-                },
-            ),
+//                  print("state set");
+////                  print(filteredNames);
+//
+//                  setState(() {
+////                    for (var value in filteredNames) {
+////                      index += index;
+////                      String value = filteredNames.toString();
+////                    }
+//
+//                    if(alreadySaved){
+//                      _saved.remove(filteredNames.toString());
+//                      print("Drink " + filteredNames.toString() + "REMOVED!");
+//                    }
+//                    else{
+//                      _saved.add(filteredNames.toString());
+//                      print("Drink " + filteredNames.toString() + "ADDED!");
+////                      int index = 0;
+//
+//                    }
+////                    print(_saved);
+//
+//
+//                  });
+
+                  },
               ),
+              ),
+//            Container(
+//              child: IconButton(
+//                onPressed: (
+//
+//                )
+//              ),
+//
+//
+//            )
 
 
         ]);
       },
 
 
+
         );
       }
 
-  getItemAndNavigate(String item, BuildContext context){
-//    Navigator.push(
-//        context,
-//        MaterialPageRoute(
-//            builder: (context) => DrinksWidget(itemHolder : item)
-//        )
-//    );
 
-
-  }
+//  getItemAndNavigate(String item, BuildContext context){
+////    Navigator.push(
+////        context,
+////        MaterialPageRoute(
+////            builder: (context) => DrinksWidget(itemHolder : item)
+////        )
+////    );
+//
+//
+//  }
 
 
   void _searchPressed() {
@@ -195,43 +284,43 @@ class _DrinkSearchState extends State<DrinkSearch> {
     });
   }
 
-  void _pushSaved() {
-    Navigator.of(context).push(
-      new MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          final Iterable<ListTile> tiles = _saved.map(
-                (String drink) {
-              return new ListTile(
-                title: new Text(
-                  drink.toString(),
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-          final List<Widget> divided = ListTile
-              .divideTiles(
-            context: context,
-            tiles: tiles,
-          )
-              .toList();
-          return new Scaffold(         // Add 6 lines from here...
-            appBar: new AppBar(
-              title: const Text('Saved Suggestions'),
-            ),
-            body: new ListView(children: divided),
-          );                           // ... to here.
-//          return new Scaffold(
+//  void _pushSaved() {
+//    Navigator.of(context).push<Set>(
+//         MaterialPageRoute(
+//        builder: (BuildContext context){
+//          final Iterable<ListTile> tiles = _saved.map(
+//                (String drink) {
+//              return new ListTile(
+//                title: new Text(
+//                  drink.toString(),
+//                  style: _biggerFont,
+//                ),
+//              );
+//            },
+//          );
+//          final List<Widget> divided = ListTile
+//              .divideTiles(
+//            context: context,
+//            tiles: tiles,
+//          )
+//              .toList();
+//          return new Scaffold(         // Add 6 lines from here...
 //            appBar: new AppBar(
 //              title: const Text('Saved Suggestions'),
 //            ),
 //            body: new ListView(children: divided),
-//          );
-
-
-        },
-      ),
-    );
-  }
+//          );                           // ... to here.
+////          return new Scaffold(
+////            appBar: new AppBar(
+////              title: const Text('Saved Suggestions'),
+////            ),
+////            body: new ListView(children: divided),
+////          );
+//
+//
+//        },
+//      ),
+//    );
+//  }
 
 }
