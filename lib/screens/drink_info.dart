@@ -68,7 +68,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                       ClipRRect(
 
                         borderRadius: BorderRadius.circular(15.0),
-                        child: Image.asset("images/" + args.name.toString() + ".jpg",
+                        child: Image.asset("images/" + args.name.toString().replaceAll(" ", "").toLowerCase() + ".jpg",
                           width: 300,
                           height: 300,
                         ),
