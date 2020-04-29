@@ -220,18 +220,8 @@ class _UserIngredientsState extends State<UserIngredients> {
           value: value,
           onChanged: (bool newVal) {
             setState(() {
-            for(int i = 0; i < drinkIngredients.length; i++) {
-              if ( text == drinkIngredients[i]) {
-                values[i] = !values[i];
-                if ( !myIngredients.contains(drinkIngredients[i])) {
-                      myIngredients.add(drinkIngredients[i]);
-                }
-                else {
-                  myIngredients.remove(drinkIngredients[i]);
-                }
-              }
-            }
-            print(myIngredients);
+              addIngredient(text);
+              print(myIngredients);
             });
           },
         ),
@@ -270,6 +260,20 @@ class _UserIngredientsState extends State<UserIngredients> {
     for (int index = 0; index < myIngredients.length; index++ ) {
       int element = drinkIngredients.indexOf(myIngredients[index]);
       values[element] = true;
+    }
+  }
+
+  void addIngredient(String ingredient) {
+    for(int i = 0; i < drinkIngredients.length; i++) {
+      if ( ingredient == drinkIngredients[i]) {
+        values[i] = !values[i];
+        if ( !myIngredients.contains(drinkIngredients[i])) {
+          myIngredients.add(drinkIngredients[i]);
+        }
+        else {
+          myIngredients.remove(drinkIngredients[i]);
+        }
+      }
     }
   }
 }
