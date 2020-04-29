@@ -98,18 +98,17 @@ class DrinksWidget extends StatelessWidget {
       padding: const EdgeInsets.all(4),
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
-      children: _buildGridTileList(drinks.length));
+      children: _buildGridTileList(renderList.length ?? 0));
 
   // The images are saved with names pic0.jpg, pic1.jpg...pic29.jpg.
   // The List.generate() constructor allows an easy way to create
   // a list when objects have a predictable naming pattern.
-  List<Container> _buildGridTileList(int count) =>
-      List.generate(count, (i) => Container(child: Image.asset('images/${drinks[i]}.jpg')));
+  List<Container> _buildGridTileList(int count) => List.generate(
+      count, (i) => Container(child: Image.asset('images/${drinks[i]}.jpg')));
 
   @override
   Widget build(BuildContext context) {
     getIngredients(context);
-    //print(tempList);
     isBreweable();
     renderListFunction();
     return Container(
@@ -122,8 +121,7 @@ class DrinksWidget extends StatelessWidget {
   }
 
   getIngredients(BuildContext context) async {
-    final drinkData =
-    await DefaultAssetBundle.of(context).loadString('assets/drinks.json');
+    final drinkData = await DefaultAssetBundle.of(context).loadString('assets/drinks.json');
     List jsonList = jsonDecode(drinkData);
     tempList = new List();
     for (int i = 0; i < jsonList.length; i++) {
@@ -134,36 +132,44 @@ class DrinksWidget extends StatelessWidget {
 
   void isBreweable() {
     try {
+      drinkStatus = new List();
       for (int i = 0; i < tempList.length; i++) {
+        print("Drink: " + tempList[i]['name']);
+
         drinkStatus.add(canMake(tempList[i]['ingredients']));
+        print(canMake(tempList[i]['ingredients']));
+
       }
-    }
-    catch (Exception) {
+    } catch (Exception) {
       print('Need to select ingredients');
     }
   }
 
-  bool canMake (List<dynamic> drink) {
+  bool canMake(List<dynamic> drink) {
     //print(drink);
     //print(myIngredients);
-    for (int i = 0; i < drink.length; i++ ) {
+    for (int i = 0; i < drink.length; i++) {
       String ingredient = drink[i]['ingredient'];
-      if ( !myIngredients.contains(ingredient))  {
+      //print("Ingredient: " + ingredient);
+      if (!myIngredients.contains(ingredient)) {
         return false;
       }
     }
+    //print(drink);
     return true;
+
   }
 
   void renderListFunction() {
-    for (int i = 0; i < drinks.length; i++ ) {
-      if (drinkStatus[i]){
-        renderList.add(drinks[i]);
+    for (int i = 0; i < drinks.length; i++) {
+      if (drinkStatus[i]) {
+        if (!renderList.contains(drinks[i])) {
+          renderList.add(drinks[i]);
+          print(drinks[i] + " added to the drinks page");
+        }
       }
     }
 
-    //print(renderList.length);
+    print(renderList.length);
   }
 }
-
-

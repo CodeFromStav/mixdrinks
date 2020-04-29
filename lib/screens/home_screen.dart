@@ -4,6 +4,8 @@ import 'package:mixdrinks/screens/drink_search.dart';
 import 'package:mixdrinks/screens/drinks_widget.dart';
 import 'package:mixdrinks/screens/profile_widget.dart';
 
+import 'user_ingredients.dart';
+
 class Home extends StatefulWidget {
   static const String id = 'home_screen';
   @override
@@ -17,7 +19,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     DrinkSearch(),
-    DrinksWidget(),
+    UserIngredients(),
     ProfileWidget()
   ];
 

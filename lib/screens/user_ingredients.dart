@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
 
+import 'drinks_widget.dart';
+
 class UserIngredients extends StatefulWidget {
   UserIngredients({Key key, this.title}) : super(key: key);
   static List<String> ingredients = _UserIngredientsState.myIngredients;
@@ -247,6 +249,17 @@ class _UserIngredientsState extends State<UserIngredients> {
     return Scaffold(
       appBar: AppBar(
         title: Text("My Ingredients"),
+        actions: <Widget>[
+          FlatButton(
+            textColor: Colors.black,
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DrinksWidget()));
+            },
+            child: Text("Brew Drinks"),
+            shape: CircleBorder(side: BorderSide(color: Colors.transparent)),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: drinkIngredients.length,
@@ -258,24 +271,22 @@ class _UserIngredientsState extends State<UserIngredients> {
   }
 
   void checkBoxes() {
-    for (int index = 0; index < myIngredients.length; index++ ) {
+    for (int index = 0; index < myIngredients.length; index++) {
       int element = drinkIngredients.indexOf(myIngredients[index]);
       values[element] = true;
     }
   }
 
   void addIngredient(String ingredient) {
-    for(int i = 0; i < drinkIngredients.length; i++) {
-      if ( ingredient == drinkIngredients[i]) {
+    for (int i = 0; i < drinkIngredients.length; i++) {
+      if (ingredient == drinkIngredients[i]) {
         values[i] = !values[i];
-        if ( !myIngredients.contains(drinkIngredients[i])) {
+        if (!myIngredients.contains(drinkIngredients[i])) {
           myIngredients.add(drinkIngredients[i]);
-        }
-        else {
+        } else {
           myIngredients.remove(drinkIngredients[i]);
         }
       }
     }
   }
 }
-
