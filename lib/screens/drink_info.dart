@@ -60,7 +60,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                         padding: EdgeInsets.all(8),
                         child: Text(args.glass.toString(),
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.pacifico(
+                          style: GoogleFonts.alef(
                             fontSize: 20,
                           ),
                         ),
@@ -85,7 +85,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                         padding: EdgeInsets.all(8),
                         child: Text(args.category.toString(),
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.pacifico(
+                          style: GoogleFonts.alef(
                             fontSize: 20,
                           )
                         ),
@@ -113,8 +113,8 @@ class _DrinkInfoState extends State<DrinkInfo> {
                                     return "-----------------" +  "\n" + "-----------------" + "\n" + oneIngredient[0].trim().toUpperCase() + ": " + oneIngredient[1].trim();}
                                     return oneIngredient[0].trim().toUpperCase() + ": " + oneIngredient[1].trim();
                                 })(),
-                                style: GoogleFonts.pacifico(
-                                  fontSize: 15,
+                                style: GoogleFonts.alef(
+                                  fontSize: 20,
 
                                   ),
                                 ),
@@ -133,7 +133,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                         margin: EdgeInsets.all(8),
                         padding: EdgeInsets.all(8),
                         child: Text(args.preparation.toString(),
-                          style: GoogleFonts.pacifico(
+                          style: GoogleFonts.alef(
                             fontSize: 20,
                           ),
                         ),
