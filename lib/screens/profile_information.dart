@@ -30,6 +30,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
                             child: TextFormField(
                               decoration:
                                   InputDecoration(labelText: 'First name'),
+                              // ignore: missing_return
                               validator: (value) {
                                 if (value.isEmpty) {
                                   return 'Please enter your first name';
@@ -43,6 +44,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
                             child: TextFormField(
                                 decoration:
                                     InputDecoration(labelText: 'Last name'),
+                                // ignore: missing_return
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return 'Please enter your last name.';
