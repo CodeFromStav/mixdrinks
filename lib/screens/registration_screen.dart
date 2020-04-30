@@ -1,9 +1,13 @@
+// The code for RegistrationScreen was originally sourced from the "londonappbrewery"
+//    github repo
+// Source: https://github.com/londonappbrewery/Flash-Chat-Flutter-Complete
+
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:mixdrinks/components/rounded_button.dart';
 import 'package:mixdrinks/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'home_screen.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:mixdrinks/screens/home_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';

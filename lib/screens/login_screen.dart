@@ -1,11 +1,13 @@
+// The code for LoginScreen was originally sourced from the "londonappbrewery"
+//    github repo
+// Source: https://github.com/londonappbrewery/Flash-Chat-Flutter-Complete
+
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:mixdrinks/components/rounded_button.dart';
 import 'package:mixdrinks/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mixdrinks/screens/drink_search.dart';
-import 'package:mixdrinks/screens/registration_screen.dart';
-import 'home_screen.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:mixdrinks/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';

@@ -1,8 +1,12 @@
+// The code for WelcomeScreen was originally sourced from the "londonappbrewery"
+//    github repo
+// Source: https://github.com/londonappbrewery/Flash-Chat-Flutter-Complete
+
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
-import 'registration_screen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:mixdrinks/components/rounded_button.dart';
+import 'package:mixdrinks/screens/login_screen.dart';
+import 'package:mixdrinks/screens/registration_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
