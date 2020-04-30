@@ -5,15 +5,15 @@ import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/user_ingredients.dart';
 import 'package:mixdrinks/components/user.dart';
 
-// Creating a firebase user object to grab the unique id associated to a user
+/// Creating a firebase user object to grab the unique id associated to a user
 FirebaseUser loggedInUser;
 
-// Class for displaying profile screen to user
+/// Class for displaying profile screen to user
 class ProfileWidget extends StatelessWidget {
-  // Set screen's id for page navigation
+  /// Set screen's id for page navigation
   static const String id = 'profile_screen';
 
-  // Create firebase instance
+  /// Create firebase instance
   final _auth = FirebaseAuth.instance;
 
   @override

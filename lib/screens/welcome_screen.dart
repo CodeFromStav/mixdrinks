@@ -8,9 +8,9 @@ import 'package:mixdrinks/components/rounded_button.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/registration_screen.dart';
 
-// Class for showing the first screen when the user starts up the app
+/// Class for showing the first screen when the user starts up the app
 class WelcomeScreen extends StatefulWidget {
-  // Setting the id for the screen to be used when constructing routes
+  /// Setting the id for the screen to be used when constructing routes
   static const String id = 'welcome_screen';
 
   // Creating a state for the _WelcomeScreenState
@@ -21,7 +21,7 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
 
-  // Animation variables to handle the text animation
+  /// Animation variables to handle the text animation
   AnimationController controller;
   Animation animation;
 

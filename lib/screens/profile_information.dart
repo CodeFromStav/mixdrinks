@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mixdrinks/components/user.dart';
 
-// Profile information page where user information is entered
+/// Profile information page where user information is entered
 class ProfileInformation extends StatefulWidget {
-  // Set screen's id for page navigation
+  /// Set screen's id for page navigation
   static const String id = 'profile_information';
 
   @override
@@ -11,10 +11,10 @@ class ProfileInformation extends StatefulWidget {
 }
 
 class _ProfileInformationState extends State<ProfileInformation> {
-  // Create key for each user form
+  /// Create key for each user form
   final _formKey = GlobalKey<FormState>();
 
-  // Create user object to store user information
+  /// Create user object to store user information
   final _user = User();
 
   @override

@@ -9,9 +9,9 @@ import 'package:mixdrinks/components/rounded_button.dart';
 import 'package:mixdrinks/constants.dart';
 import 'package:mixdrinks/screens/home_screen.dart';
 
-// Class for handling where the user will login in with a registered account
+/// Class for handling where the user will login in with a registered account
 class LoginScreen extends StatefulWidget {
-  // Setting the id for the screen to be used when constructing routes
+  /// Setting the id for the screen to be used when constructing routes
   static const String id = 'login_screen';
 
   // Creating a state for the _LoginScreenState
@@ -20,14 +20,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // Create firebase instance
+  /// Create firebase instance
   final _auth = FirebaseAuth.instance;
 
-  // Boolean for handling whether to show spinner or not
+  /// Boolean for handling whether to show spinner or not
   bool showSpinner = false;
 
-  // Storing the user's email and password that will be used to make a user
-  //    account with firebase
+  /// Storing the user's email and password that will be used to make a user
+  ///    account with firebase
   String email;
   String password;
 
