@@ -1,9 +1,6 @@
 import 'dart:core';
-
 import 'package:flutter/material.dart';
 import 'package:mixdrinks/screens/user_ingredients.dart' as ingredients;
-import 'package:mixdrinks/screens/drink_search.dart' as data;
-import 'dart:core';
 import 'dart:convert';
 
 class DrinksWidget extends StatelessWidget {
@@ -104,20 +101,34 @@ class DrinksWidget extends StatelessWidget {
   // The List.generate() constructor allows an easy way to create
   // a list when objects have a predictable naming pattern.
   List<Container> _buildGridTileList(int count) => List.generate(
-      count, (i) => Container(child: Image.asset('images/${drinks[i]}.jpg')));
+      count, (i) => Container(child: Image.asset('images/${drinks[i].replaceAll(" ", "").toLowerCase()}.jpg')));
 
   @override
   Widget build(BuildContext context) {
     getIngredients(context);
     isBreweable();
     renderListFunction();
-    return Container(
-        decoration: BoxDecoration(
-          color: Color(0xFFF3CC79),
-        ),
-        child: Center(
-          child: _buildGrid(),
-        ));
+    if (renderList.length > 0) {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text("Drinks Brewed"),
+          ),
+
+          body: Center(
+            child: _buildGrid(),
+          ));
+    }
+
+    else {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text("Drinks Brewed"),
+          ),
+
+          body: Center(
+            child: Text("No drinks can be made from the selected ingredients."),
+          ));
+    }
   }
 
   getIngredients(BuildContext context) async {
@@ -131,17 +142,14 @@ class DrinksWidget extends StatelessWidget {
   }
 
   void isBreweable() {
-    try {
-      drinkStatus = new List();
+    drinkStatus = new List();
+    if ( tempList != null ) {
       for (int i = 0; i < tempList.length; i++) {
         print("Drink: " + tempList[i]['name']);
 
         drinkStatus.add(canMake(tempList[i]['ingredients']));
         print(canMake(tempList[i]['ingredients']));
-
       }
-    } catch (Exception) {
-      print('Need to select ingredients');
     }
   }
 
@@ -151,7 +159,7 @@ class DrinksWidget extends StatelessWidget {
     for (int i = 0; i < drink.length; i++) {
       String ingredient = drink[i]['ingredient'];
       //print("Ingredient: " + ingredient);
-      if (!myIngredients.contains(ingredient)) {
+      if (!isBrewable(ingredient)) {
         return false;
       }
     }
@@ -163,15 +171,31 @@ class DrinksWidget extends StatelessWidget {
   void renderListFunction() {
     if ( drinkStatus.length == drinks.length ) {
       for (int i = 0; i < drinks.length; i++) {
+        String simpleDrink = drinks[i].replaceAll(" ", "").toLowerCase();
         if (drinkStatus[i]) {
-          if (!renderList.contains(drinks[i])) {
-            renderList.add(drinks[i]);
-            print(drinks[i] + " added to the drinks page");
+          if (!renderList.contains(simpleDrink)) {
+            renderList.add(simpleDrink);
+            print(simpleDrink + " added to the drinks page");
+          }
+        }
+
+        else {
+          if (renderList.contains(simpleDrink)) {
+            renderList.remove(simpleDrink);
+            print(simpleDrink + " removed from the drinks page");
           }
         }
       }
     }
 
     print(renderList.length);
+  }
+
+  bool isBrewable(String ingredient) {
+    if ( ingredient != null ) {
+      String temp = ingredient.replaceAll(" ", "").toLowerCase();
+      return myIngredients.contains(temp);
+    }
+    return false;
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
 import 'drinks_widget.dart';
+import 'dart:convert';
+import 'package:mixdrinks/screens/drinks_widget.dart';
 
 ///Class is responsible for the handling of user's selected ingredients
 class UserIngredients extends StatefulWidget {
@@ -262,8 +264,7 @@ class _UserIngredientsState extends State<UserIngredients> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => DrinksWidget())); // Move to Drinks Page
+          Navigator.pushNamed(context, DrinksWidget.id, arguments: myIngredients); // Move to Drinks Page
         },
       ),
       body: ListView.builder(
@@ -278,7 +279,9 @@ class _UserIngredientsState extends State<UserIngredients> {
   void checkBoxes() {
     for (int index = 0; index < myIngredients.length; index++) {
       int element = drinkIngredients.indexOf(myIngredients[index]);
-      values[element] = true;
+      if ( element > 0) {
+        values[element] = true;
+      }
     }
   }
 
@@ -286,10 +289,11 @@ class _UserIngredientsState extends State<UserIngredients> {
     for (int i = 0; i < drinkIngredients.length; i++) {
       if (ingredient == drinkIngredients[i]) {
         values[i] = !values[i];
-        if (!myIngredients.contains(drinkIngredients[i])) {
-          myIngredients.add(drinkIngredients[i]);
+        String temp = drinkIngredients[i].replaceAll(" ", "").toLowerCase();
+        if (!myIngredients.contains(temp)) {
+          myIngredients.add(temp);
         } else {
-          myIngredients.remove(drinkIngredients[i]);
+          myIngredients.remove(temp);
         }
       }
     }
