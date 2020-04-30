@@ -3,6 +3,7 @@ import 'package:mixdrinks/components/drink_details.dart';
 import 'home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Takes in drink_details class and populates a widget for user viewing
 class DrinkInfo extends StatefulWidget {
   static const String id = 'drink_info';
 
@@ -25,6 +26,8 @@ class _DrinkInfoState extends State<DrinkInfo> {
           length: 4,
           child: Scaffold(
             backgroundColor: Colors.white,
+
+            // backbutton takes you back to the drink_search page
             appBar: AppBar(
               title: Text(args.name),
               leading: BackButton(
@@ -33,6 +36,8 @@ class _DrinkInfoState extends State<DrinkInfo> {
                   Navigator.pushNamed(context, Home.id);
                 },
               ),
+
+              //navigation tabs for different categories
               bottom: TabBar(isScrollable: true, tabs: [
                 Tab(text: "Glass"),
                 Tab(text: "Category"),
@@ -40,6 +45,8 @@ class _DrinkInfoState extends State<DrinkInfo> {
                 Tab(text: "Preparation"),
               ]),
             ),
+
+            // each column corresponds to its respective tab.
             body: TabBarView(children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -87,6 +94,9 @@ class _DrinkInfoState extends State<DrinkInfo> {
               Column(
                 children: <Widget>[
                   Expanded(
+
+                    // builds a formatted list of the ingredients for users to see
+                    // in an organized way
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemCount: formatIngredients.length,
@@ -147,6 +157,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
   }
 }
 
+// removes all the brackets from the json info from the drink_details class
 String removeBrackets(String inStr) {
   return inStr
       .replaceAll("(", "")
@@ -157,6 +168,7 @@ String removeBrackets(String inStr) {
       .replaceAll("}", "");
 }
 
+// creates a new text widget on a row
 Widget getTextWidgets(List<String> strings) {
   return new Row(children: strings.map((item) => new Text(item)).toList());
 }
