@@ -161,11 +161,13 @@ class DrinksWidget extends StatelessWidget {
   }
 
   void renderListFunction() {
-    for (int i = 0; i < drinks.length; i++) {
-      if (drinkStatus[i]) {
-        if (!renderList.contains(drinks[i])) {
-          renderList.add(drinks[i]);
-          print(drinks[i] + " added to the drinks page");
+    if ( drinkStatus.length == drinks.length ) {
+      for (int i = 0; i < drinks.length; i++) {
+        if (drinkStatus[i]) {
+          if (!renderList.contains(drinks[i])) {
+            renderList.add(drinks[i]);
+            print(drinks[i] + " added to the drinks page");
+          }
         }
       }
     }

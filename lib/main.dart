@@ -3,24 +3,31 @@ import 'package:mixdrinks/screens/drink_info.dart';
 import 'package:mixdrinks/screens/drink_search.dart';
 import 'package:mixdrinks/screens/drinks_widget.dart';
 import 'package:mixdrinks/screens/home_screen.dart';
+import 'package:mixdrinks/screens/profile_information.dart';
+import 'package:mixdrinks/screens/profile_widget.dart';
+import 'package:mixdrinks/screens/user_ingredients.dart';
 import 'package:mixdrinks/screens/welcome_screen.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/registration_screen.dart';
 
 import 'screens/drinks_widget.dart';
 
+// Run the app
 void main() => runApp(MixDrinks());
 
 class MixDrinks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // Set the theme data used by the app
       theme: ThemeData(
           primaryColor: Color(0xFFE5B143),
       ),
-      initialRoute: WelcomeScreen.id,
+      // Set the initial route
+      initialRoute: Home.id,
+      // Set the routes for each of the pages
       routes: {
-        WelcomeScreen.id: (context) => WelcomeScreen(),
+        WelcomeScreen.id: (context) => Home(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         Home.id: (context) => Home(),
@@ -28,7 +35,8 @@ class MixDrinks extends StatelessWidget {
         DrinksWidget.id: (context) => DrinksWidget(),
         DrinkSearch.id: (context) => DrinkSearch(),
         DrinkInfo.id: (context) => DrinkInfo(),
-
+        ProfileWidget.id: (context) => ProfileWidget(),
+        ProfileInformation.id: (context) => ProfileInformation(),
       },
     );
   }

@@ -18,7 +18,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
     List<String> formatIngredients = new List<String>();
     formatIngredients = removeBrackets(args.ingredients.toString()).split(",");
     for (int i = 0; i < formatIngredients.length; i++) {
-      print(formatIngredients[i]);
+//      print(formatIngredients[i]);
     }
     //print(formatIngredients.toString());
     return MaterialApp(
@@ -60,7 +60,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                         padding: EdgeInsets.all(8),
                         child: Text(args.glass.toString(),
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.pacifico(
+                          style: GoogleFonts.alef(
                             fontSize: 20,
                           ),
                         ),
@@ -68,7 +68,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                       ClipRRect(
 
                         borderRadius: BorderRadius.circular(15.0),
-                        child: Image.asset("images/" + args.name.toString() + ".jpg",
+                        child: Image.asset("images/" + args.name.toString().replaceAll(" ", "").toLowerCase() + ".jpg",
                           width: 300,
                           height: 300,
                         ),
@@ -85,7 +85,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                         padding: EdgeInsets.all(8),
                         child: Text(args.category.toString(),
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.pacifico(
+                          style: GoogleFonts.alef(
                             fontSize: 20,
                           )
                         ),
@@ -108,13 +108,13 @@ class _DrinkInfoState extends State<DrinkInfo> {
                               child:
                                 Text((() {
                                   List<String> oneIngredient = formatIngredients[index].split(":");
-                                  print(oneIngredient);
+//                                  print(oneIngredient);
                                   if (index != 0 && formatIngredients[index].contains("unit")) {
                                     return "-----------------" +  "\n" + "-----------------" + "\n" + oneIngredient[0].trim().toUpperCase() + ": " + oneIngredient[1].trim();}
                                     return oneIngredient[0].trim().toUpperCase() + ": " + oneIngredient[1].trim();
                                 })(),
-                                style: GoogleFonts.pacifico(
-                                  fontSize: 15,
+                                style: GoogleFonts.alef(
+                                  fontSize: 20,
 
                                   ),
                                 ),
@@ -133,7 +133,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
                         margin: EdgeInsets.all(8),
                         padding: EdgeInsets.all(8),
                         child: Text(args.preparation.toString(),
-                          style: GoogleFonts.pacifico(
+                          style: GoogleFonts.alef(
                             fontSize: 20,
                           ),
                         ),

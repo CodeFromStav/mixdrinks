@@ -3,6 +3,9 @@ import 'package:mixdrinks/components/user.dart';
 
 // Profile information page where user information is entered
 class ProfileInformation extends StatefulWidget {
+  // Set screen's id for page navigation
+  static const String id = 'profile_information';
+
   @override
   _ProfileInformationState createState() => _ProfileInformationState();
 }
@@ -10,6 +13,7 @@ class ProfileInformation extends StatefulWidget {
 class _ProfileInformationState extends State<ProfileInformation> {
   // Create key for each user form
   final _formKey = GlobalKey<FormState>();
+
   // Create user object to store user information
   final _user = User();
 
@@ -19,8 +23,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
         // Create app bar
         appBar: AppBar(title: Text('Profile')),
         body: Container(
-            padding:
-                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
             child: Builder(
                 // Create a form for user information
                 builder: (context) => Form(
@@ -69,8 +72,8 @@ class _ProfileInformationState extends State<ProfileInformation> {
                                 secondary: const Icon(Icons.person),
                                 // Information is saved to user page
                                 onChanged: (val) {
-                                  setState(() =>
-                                      _user.passions[User.SocialDrinking] = val);
+                                  setState(() => _user
+                                      .passions[User.SocialDrinking] = val);
                                 }),
                           ),
                           Expanded(

@@ -1,3 +1,7 @@
+// The code for RoundedButton was originally sourced from the "londonappbrewery"
+//    github repo
+// Source: https://github.com/londonappbrewery/Flash-Chat-Flutter-Complete
+
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {

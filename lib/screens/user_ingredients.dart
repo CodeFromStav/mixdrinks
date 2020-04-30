@@ -1,21 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
-
 import 'drinks_widget.dart';
 
+///Class is responsible for the handling of user's selected ingredients
 class UserIngredients extends StatefulWidget {
+
+  ///Class variables
+  static String id = "user_ingredients";
   UserIngredients({Key key, this.title}) : super(key: key);
   static List<String> ingredients = _UserIngredientsState.myIngredients;
   final String title;
 
+  ///Create the state of the widget
   @override
   _UserIngredientsState createState() => _UserIngredientsState();
 }
 
 class _UserIngredientsState extends State<UserIngredients> {
+  ///Class variables
   Set ingredients;
   static List<String> myIngredients = new List();
+
+  /// List for drink ingredients
   static List<String> drinkIngredients = [
     "Gin",
     "Vodka",
@@ -83,6 +90,7 @@ class _UserIngredientsState extends State<UserIngredients> {
     "Peychaud's Bitters"
   ];
 
+  //Labels for the handling of selected ingredients
   static bool ginVal = false;
   static bool vodkaVal = false;
   static bool lilletBlondeVal = false;
@@ -148,6 +156,7 @@ class _UserIngredientsState extends State<UserIngredients> {
   static bool brownSugarVal = false;
   static bool peychaudBittersVal = false;
 
+  //List of all the label values
   List<bool> values = [
     ginVal,
     vodkaVal,
@@ -215,6 +224,7 @@ class _UserIngredientsState extends State<UserIngredients> {
     peychaudBittersVal
   ];
 
+  ///Custom widget for the functionality of a simple checkbox with a label
   Widget checkbox(String text, bool value) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -249,17 +259,12 @@ class _UserIngredientsState extends State<UserIngredients> {
     return Scaffold(
       appBar: AppBar(
         title: Text("My Ingredients"),
-        actions: <Widget>[
-          FlatButton(
-            textColor: Colors.black,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DrinksWidget()));
-            },
-            child: Text("Brew Drinks"),
-            shape: CircleBorder(side: BorderSide(color: Colors.transparent)),
-          ),
-        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DrinksWidget())); // Move to Drinks Page
+        },
       ),
       body: ListView.builder(
         itemCount: drinkIngredients.length,

@@ -9,7 +9,6 @@ import 'package:mixdrinks/components/user.dart';
 FirebaseUser loggedInUser;
 
 // Class for displaying profile screen to user
-
 class ProfileWidget extends StatelessWidget {
   // Set screen's id for page navigation
   static const String id = 'profile_screen';

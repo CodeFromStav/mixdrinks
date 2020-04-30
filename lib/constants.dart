@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Constant used within the login screen and registration screen
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
