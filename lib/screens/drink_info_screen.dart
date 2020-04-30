@@ -18,9 +18,11 @@ class _DrinkInfoState extends State<DrinkInfo> {
     List<String> formatIngredients = new List<String>();
     formatIngredients = removeBrackets(args.ingredients.toString()).split(",");
     for (int i = 0; i < formatIngredients.length; i++) {}
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color(0xFFE5B143),
+    return new WillPopScope(
+      onWillPop: () async => false,
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Color(0xFFE5B143),
       ),
       home: DefaultTabController(
           length: 4,
@@ -33,7 +35,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
               leading: BackButton(
                 color: Colors.black,
                 onPressed: () {
-                  Navigator.pushNamed(context, Home.id);
+                  Navigator.of(context).pop();
                 },
               ),
 
@@ -153,6 +155,7 @@ class _DrinkInfoState extends State<DrinkInfo> {
               ),
             ]),
           )),
+    ),
     );
   }
 }
