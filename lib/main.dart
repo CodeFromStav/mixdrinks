@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mixdrinks/screens/drink_info_screen.dart';
 import 'package:mixdrinks/screens/drink_search_screen.dart';
-import 'package:mixdrinks/screens/drinks_widget.dart';
+import 'package:mixdrinks/screens/brewing_screen.dart';
 import 'package:mixdrinks/screens/home_screen.dart';
 import 'package:mixdrinks/screens/profile_information_screen.dart';
 import 'package:mixdrinks/screens/profile_screen.dart';
@@ -9,7 +9,7 @@ import 'package:mixdrinks/screens/welcome_screen.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/registration_screen.dart';
 
-import 'screens/drinks_widget.dart';
+import 'screens/brewing_screen.dart';
 
 // Run the app
 void main() => runApp(MixDrinks());

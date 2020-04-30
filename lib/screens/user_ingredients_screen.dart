@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
-import 'package:mixdrinks/screens/drinks_widget.dart';
+import 'package:mixdrinks/screens/brewing_screen.dart';
 
 ///Class is responsible for the handling of user's selected ingredients
 class UserIngredients extends StatefulWidget {

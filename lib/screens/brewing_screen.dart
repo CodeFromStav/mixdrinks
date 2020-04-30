@@ -2,6 +2,8 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:mixdrinks/screens/user_ingredients_screen.dart' as ingredients;
 import 'dart:convert';
+import 'package:mixdrinks/screens/drink_info_screen.dart';
+import 'package:mixdrinks/components/drink_details.dart';
 
 class DrinksWidget extends StatelessWidget {
   static const String id = 'drinks_screen';
@@ -88,29 +90,28 @@ class DrinksWidget extends StatelessWidget {
     "Harvey Wallbanger"
   ];
 
-  List<String> renderList = new List();
+  final List<String> renderList = new List();
 
-  Widget _buildGrid() => GridView.extent(
+  Widget _buildGrid(BuildContext context) => GridView.extent(
       maxCrossAxisExtent: 150,
       padding: const EdgeInsets.all(4),
       mainAxisSpacing: 4,
       crossAxisSpacing: 4,
-      children: _buildGridTileList(renderList.length ?? 0));
+      children: _buildGridTileList(renderList.length ?? 0, context));
 
   // The images are saved with names pic0.jpg, pic1.jpg...pic29.jpg.
   // The List.generate() constructor allows an easy way to create
   // a list when objects have a predictable naming pattern.
-  List<Container> _buildGridTileList(int count) => List.generate(
-      count,
-      (i) => Container(
-          child: FlatButton(
-              onPressed: () {
-                //Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-              },
-              child: Image.asset('images/${renderList[i].replaceAll(" ", "").toLowerCase()}.jpg'))),);
-
-
-
+  List<Container> _buildGridTileList(int count, BuildContext context) => List.generate(
+        count,
+        (i) => Container(
+            child: FlatButton(
+                onPressed: () {
+                  generateDrinkInfo(renderList[i], context);
+                },
+                child: Image.asset(
+                    'images/${renderList[i].replaceAll(" ", "").toLowerCase()}.jpg'))),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -123,16 +124,17 @@ class DrinksWidget extends StatelessWidget {
             title: Text("Drinks Brewed"),
           ),
           body: Center(
-            child: _buildGrid(),
+            child: _buildGrid(context),
           ));
     } else {
       return Scaffold(
-          appBar: AppBar(
-            title: Text("Drinks Brewed"),
-          ),
-          body: Center(
-            child: Text("No drinks can be made from the selected ingredients."),
-          ));
+        appBar: AppBar(
+          title: Text("Brewing Failed"),
+        ),
+        body: Center(
+          child: Text("No drinks can be made from the selected ingredients."),
+        ),
+      );
     }
   }
 
@@ -185,8 +187,6 @@ class DrinksWidget extends StatelessWidget {
         }
       }
     }
-
-    //print(renderList.length);
   }
 
   bool isBrewable(String ingredient) {
@@ -195,5 +195,25 @@ class DrinksWidget extends StatelessWidget {
       return myIngredients.contains(temp);
     }
     return false;
+  }
+
+  void generateDrinkInfo(String name, BuildContext context) {
+    for (int i = 0; i < tempList.length; i++) {
+      String temp = tempList[i]['name'].replaceAll(" ", "").toLowerCase();
+      if (temp == name) {
+        print(tempList[i]['name']);
+        Navigator.pushNamed(
+          context,
+          DrinkInfo.id,
+          arguments: DrinkDetails(
+            tempList[i]["name"],
+            tempList[i]["glass"],
+            tempList[i]["category"],
+            tempList[i]["ingredients"],
+            tempList[i]["preparation"],
+          ),
+        );
+      }
+    }
   }
 }
