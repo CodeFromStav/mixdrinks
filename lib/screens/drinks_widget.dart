@@ -101,7 +101,7 @@ class DrinksWidget extends StatelessWidget {
   // The List.generate() constructor allows an easy way to create
   // a list when objects have a predictable naming pattern.
   List<Container> _buildGridTileList(int count) => List.generate(
-      count, (i) => Container(child: Image.asset('images/${drinks[i].replaceAll(" ", "").toLowerCase()}.jpg')));
+      count, (i) => Container(child: Image.asset('images/${renderList[i].replaceAll(" ", "").toLowerCase()}.jpg')));
 
   @override
   Widget build(BuildContext context) {
