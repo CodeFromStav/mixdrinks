@@ -5,7 +5,6 @@ import 'package:mixdrinks/screens/drinks_widget.dart';
 
 ///Class is responsible for the handling of user's selected ingredients
 class UserIngredients extends StatefulWidget {
-
   ///Class variables
   static String id = "user_ingredients";
   UserIngredients({Key key, this.title}) : super(key: key);
@@ -258,12 +257,16 @@ class _UserIngredientsState extends State<UserIngredients> {
     checkBoxes();
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Ingredients"),
+        title: Text(" Select Your Ingredients"),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(context, DrinksWidget.id, arguments: myIngredients); // Move to Drinks Page
+          Navigator.pushNamed(context, DrinksWidget.id,
+              arguments: myIngredients); // Move to Drinks Page
         },
+        label: Text('Brew Drinks'),
+        icon: Icon(Icons.local_bar),
+
       ),
       body: ListView.builder(
         itemCount: drinkIngredients.length,
@@ -274,26 +277,33 @@ class _UserIngredientsState extends State<UserIngredients> {
     );
   }
 
+  ///Checks all the previously selected boxes
   void checkBoxes() {
-    List<String> temp =  new List();
-    for (int index = 0; index < drinkIngredients.length; index++){
-      temp.add("");
+    //Initialize the clone list
+    List<String> clone = new List();
+    for (int index = 0; index < drinkIngredients.length; index++) {
+      clone.add("");
     }
-    for (int index = 0; index < drinkIngredients.length; index++){
-      temp[index] = drinkIngredients[index];
-      drinkIngredients[index] =  drinkIngredients[index].replaceAll(" ", "").toLowerCase();
+    //Copy the drink list to the clone list and standardize the drink ingredients list
+    for (int index = 0; index < drinkIngredients.length; index++) {
+      clone[index] = drinkIngredients[index];
+      drinkIngredients[index] =
+          drinkIngredients[index].replaceAll(" ", "").toLowerCase();
     }
+    //Check the box of the correct ingredient
     for (int index = 0; index < myIngredients.length; index++) {
       int element = drinkIngredients.indexOf(myIngredients[index]);
-      if ( element >= 0) {
+      if (element >= 0) {
         values[element] = true;
       }
     }
-    for (int index = 0; index < drinkIngredients.length; index++){
-      drinkIngredients[index] =  temp[index];
+    //Reset the drinks
+    for (int index = 0; index < drinkIngredients.length; index++) {
+      drinkIngredients[index] = clone[index];
     }
   }
 
+  //Selects an ingredient
   void addIngredient(String ingredient) {
     for (int i = 0; i < drinkIngredients.length; i++) {
       if (ingredient == drinkIngredients[i]) {

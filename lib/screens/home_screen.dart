@@ -35,8 +35,8 @@ class _HomeState extends State<Home> {
             title: Text('Search'),
           ),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.local_bar),
-            title: Text('Drinks'),
+            icon: Icon(Icons.local_drink),
+            title: Text('Mix Drinks'),
           ),
           new BottomNavigationBarItem(
               icon: Icon(Icons.person), title: Text('Profile'))

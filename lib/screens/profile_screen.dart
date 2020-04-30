@@ -123,25 +123,6 @@ class ProfileWidget extends StatelessWidget {
                   ),
                 )),
           ),
-          // Button for directing user to ingredients page
-          FlatButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => UserIngredients()));
-            },
-            child: Card(
-                // Display card associated to ingredients page
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                child: ListTile(
-                  title: Text(
-                    'My Ingredients',
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        color: Color.fromRGBO(0, 0, 50, 100),
-                        fontFamily: 'Source Sans Pro'),
-                  ),
-                )),
-          ),
           // Button for directing user to login page
           FlatButton(
             onPressed: () {
