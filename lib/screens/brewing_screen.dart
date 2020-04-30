@@ -5,10 +5,12 @@ import 'dart:convert';
 import 'package:mixdrinks/screens/drink_info_screen.dart';
 import 'package:mixdrinks/components/drink_details.dart';
 
+///Class is responsible for handling the user generated drinks page
 class DrinksWidget extends StatelessWidget {
+  ///Class Variables
   static const String id = 'drinks_screen';
-  static List<String> myIngredients = ingredients.UserIngredients.ingredients;
-  static List tempList;
+  static List<String> myIngredients = ingredients.UserIngredients.ingredients; // stores the dynamic list of user selected ingredients
+  static List drinkArchive;
   static List<bool> drinkStatus = new List();
   static List<String> drinks = [
     "Vesper",
@@ -99,9 +101,7 @@ class DrinksWidget extends StatelessWidget {
       crossAxisSpacing: 4,
       children: _buildGridTileList(renderList.length ?? 0, context));
 
-  // The images are saved with names pic0.jpg, pic1.jpg...pic29.jpg.
-  // The List.generate() constructor allows an easy way to create
-  // a list when objects have a predictable naming pattern.
+  ///Generates each drink that can be brewed
   List<Container> _buildGridTileList(int count, BuildContext context) => List.generate(
         count,
         (i) => Container(
@@ -116,7 +116,7 @@ class DrinksWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     getIngredients(context);
-    isBreweable();
+    getStatus();
     renderListFunction();
     if (renderList.length > 0) {
       return Scaffold(
@@ -138,48 +138,54 @@ class DrinksWidget extends StatelessWidget {
     }
   }
 
+  ///Method for getting the ingredients from the json file
   getIngredients(BuildContext context) async {
     final drinkData =
         await DefaultAssetBundle.of(context).loadString('assets/drinks.json');
     List jsonList = jsonDecode(drinkData);
-    tempList = new List();
+    drinkArchive = new List();
     for (int i = 0; i < jsonList.length; i++) {
-      tempList.add(jsonList[i]);
+      drinkArchive.add(jsonList[i]);
     }
   }
 
-  void isBreweable() {
+  ///Method to get the brewing status of all drinks
+  void getStatus() {
     drinkStatus = new List();
-    if (tempList != null) {
-      for (int i = 0; i < tempList.length; i++) {
+    if (drinkArchive != null) {
+      for (int i = 0; i < drinkArchive.length; i++) {
         //print("Drink: " + tempList[i]['name']);
 
-        drinkStatus.add(canMake(tempList[i]['ingredients']));
+        drinkStatus.add(canMake(drinkArchive[i]['ingredients']));
         //print(canMake(tempList[i]['ingredients']));
       }
     }
   }
 
+  ///Method for determining if a drink can be made with the given ingredients
   bool canMake(List<dynamic> drink) {
     for (int i = 0; i < drink.length; i++) {
       String ingredient = drink[i]['ingredient'];
-      if (!isBrewable(ingredient)) {
+      if (!hasIngredient(ingredient)) {
         return false;
       }
     }
     return true;
   }
 
+  ///Method responsible for generating the render list of brewable drinks
   void renderListFunction() {
     if (drinkStatus.length == drinks.length) {
-      for (int i = 0; i < drinks.length; i++) {
-        String simpleDrink = drinks[i].replaceAll(" ", "").toLowerCase();
-        if (drinkStatus[i]) {
+      for (int index = 0; index < drinks.length; index++) {
+        String simpleDrink = drinks[index].replaceAll(" ", "").toLowerCase(); //Standardize data string
+        bool status = drinkStatus[index]; // status of current drink
+        if (status) {
           if (!renderList.contains(simpleDrink)) {
             renderList.add(simpleDrink);
             //print(simpleDrink + " added to the drinks page");
           }
-        } else {
+        }
+        else {
           if (renderList.contains(simpleDrink)) {
             renderList.remove(simpleDrink);
             //print(simpleDrink + " removed from the drinks page");
@@ -189,28 +195,32 @@ class DrinksWidget extends StatelessWidget {
     }
   }
 
-  bool isBrewable(String ingredient) {
+  ///Helper method for determining if an ingredient is present or not
+  bool hasIngredient(String ingredient) {
     if (ingredient != null) {
-      String temp = ingredient.replaceAll(" ", "").toLowerCase();
+      String temp = ingredient.replaceAll(" ", "").toLowerCase(); //Standardize data string
       return myIngredients.contains(temp);
     }
+    //No ingredient found
     return false;
   }
 
+  ///Method responsible for transitioning the user to the selected drink's information page
   void generateDrinkInfo(String name, BuildContext context) {
-    for (int i = 0; i < tempList.length; i++) {
-      String temp = tempList[i]['name'].replaceAll(" ", "").toLowerCase();
+    for (int i = 0; i < drinkArchive.length; i++) {
+      String temp = drinkArchive[i]['name'].replaceAll(" ", "").toLowerCase(); //standardize data string
       if (temp == name) {
-        print(tempList[i]['name']);
+        //print(drinkArchive[i]['name']); //prints the name of the selected drink
+        //Move to drink info page for selected drink
         Navigator.pushNamed(
           context,
           DrinkInfo.id,
           arguments: DrinkDetails(
-            tempList[i]["name"],
-            tempList[i]["glass"],
-            tempList[i]["category"],
-            tempList[i]["ingredients"],
-            tempList[i]["preparation"],
+            drinkArchive[i]["name"],
+            drinkArchive[i]["glass"],
+            drinkArchive[i]["category"],
+            drinkArchive[i]["ingredients"],
+            drinkArchive[i]["preparation"],
           ),
         );
       }
