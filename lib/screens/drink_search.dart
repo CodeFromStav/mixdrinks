@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:mixdrinks/screens/drink_info.dart';
 import 'package:mixdrinks/components/drink_details.dart';
-import 'package:mixdrinks/screens/drinks_widget.dart';
 
 class DrinkSearch extends StatefulWidget {
   static const String id = 'drink_search';
+
   @override
   _DrinkSearchState createState() => new _DrinkSearchState();
 }
 
 class _DrinkSearchState extends State<DrinkSearch> {
-
   //Favorite Functionality:
   //This set stores the drinks that the user favorited (set does not allow duplicates)
-  final Set<String> _saved = Set<String>();   // Add this line.
+  final Set<String> _saved = Set<String>(); // Add this line.
   final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
 
   final TextEditingController _filter = new TextEditingController();
@@ -22,7 +21,7 @@ class _DrinkSearchState extends State<DrinkSearch> {
   List names = new List();
   List filteredNames = new List();
   Icon _searchIcon = new Icon(Icons.search);
-  Widget _appBarTitle = new Text( 'Search Drinks' );
+  Widget _appBarTitle = new Text('Search Drinks');
 
   _DrinkSearchState() {
     _filter.addListener(() {
@@ -44,20 +43,18 @@ class _DrinkSearchState extends State<DrinkSearch> {
     this._getNames();
     super.initState();
   }
+
   //build function is called multiple times throughout program to set the build the display
   Widget build(BuildContext context) {
-
     return Scaffold(
-
       appBar: _buildBar(context),
-
       body: Container(
         child: _buildList(), //ADDED STRING PARAM
       ),
       resizeToAvoidBottomPadding: false,
     );
-
   }
+
   //Created a widget that includes the search bar at the top
   Widget _buildBar(BuildContext context) {
     return new AppBar(
@@ -66,21 +63,22 @@ class _DrinkSearchState extends State<DrinkSearch> {
       leading: new IconButton(
         icon: _searchIcon,
         onPressed: _searchPressed,
-
       ),
-      actions: <Widget>[      // Add 3 lines from here...
+      actions: <Widget>[
+        // Add 3 lines from here...
         new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
-      ],                      // ... to here.
+      ], // ... to here.
     );
-
   }
-  //builds a list of drinks based on the JSON file we read from
-  Widget _buildList( ) {
 
+  //builds a list of drinks based on the JSON file we read from
+  Widget _buildList() {
     if ((_searchText.isNotEmpty)) {
       List tempList = new List();
       for (int i = 0; i < filteredNames.length; i++) {
-        if (filteredNames[i]['name'].toLowerCase().contains(_searchText.toLowerCase())) {
+        if (filteredNames[i]['name']
+            .toLowerCase()
+            .contains(_searchText.toLowerCase())) {
           tempList.add(filteredNames[i]);
         }
       }
@@ -90,63 +88,57 @@ class _DrinkSearchState extends State<DrinkSearch> {
     return ListView.builder(
       itemCount: names == null ? 0 : filteredNames.length,
       itemBuilder: (BuildContext context, int index) {
-
         //allows us to see what drink is already saved
         final alreadySaved = _saved.contains(filteredNames[index].toString());
 
-        return Column(
+        return Column(children: [
+          Container(
+            //this ListTile contains the name of the drink as well as a heart icon trailing that turns red when activated
+            child: ListTile(
+              title: Text(filteredNames[index]['name']),
+              trailing: Icon(
+                alreadySaved ? Icons.favorite : Icons.favorite_border,
+                color: alreadySaved ? Colors.red : null,
+              ),
+              //when a specific tile is pressed, it will take you to a page containing the following sections. It will also update the drink to pressed,
+              //and add that drink selected to favorites for now.
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  DrinkInfo.id,
+                  arguments: DrinkDetails(
+                    filteredNames[index]["name"],
+                    filteredNames[index]["glass"],
+                    filteredNames[index]["category"],
+                    filteredNames[index]["ingredients"],
+                    filteredNames[index]["preparation"],
+                  ),
+                );
 
-          children:[
-
-              Container(
-              //this ListTile contains the name of the drink as well as a heart icon trailing that turns red when activated
-              child:  ListTile(
-                      title: Text(filteredNames[index]['name']),
-                      trailing: Icon(
-                      alreadySaved ? Icons.favorite : Icons.favorite_border,
-                      color: alreadySaved ? Colors.red : null,
-                      ),
-                //when a specific tile is pressed, it will take you to a page containing the following sections. It will also update the drink to pressed,
-                //and add that drink selected to favorites for now.
-                onTap: () {
-
-                  Navigator.pushNamed(
-                    context,
-                    DrinkInfo.id,
-                    arguments: DrinkDetails(
-                      filteredNames[index]["name"],
-                      filteredNames[index]["glass"],
-                      filteredNames[index]["category"],
-                      filteredNames[index]["ingredients"],
-                      filteredNames[index]["preparation"],
-                    ),
-                  );
-
-                  setState(() {
-
-                    if(alreadySaved){
-                      _saved.remove(filteredNames.toString());
-                      print("Drink " + filteredNames[index].toString() + "REMOVED!");
-                      print("\n  ==================== \n");
-                      print(_saved);
-                    }
-                    else{
-                      _saved.add(filteredNames[index].toString());
-                      print("Drink " + filteredNames[index].toString() + "ADDED!");
-                      print("\n  ==================== \n");
-
-                    }
+                setState(() {
+                  if (alreadySaved) {
+                    _saved.remove(filteredNames.toString());
+                    print("Drink " +
+                        filteredNames[index].toString() +
+                        "REMOVED!");
+                    print("\n  ==================== \n");
                     print(_saved);
-
-
-                  });
-                  },
-              ),
-              ),
+                  } else {
+                    _saved.add(filteredNames[index].toString());
+                    print(
+                        "Drink " + filteredNames[index].toString() + "ADDED!");
+                    print("\n  ==================== \n");
+                  }
+                  print(_saved);
+                });
+              },
+            ),
+          ),
         ]);
       },
     );
   }
+
 //this method carries out the search bar functionality
   void _searchPressed() {
     setState(() {
@@ -155,13 +147,11 @@ class _DrinkSearchState extends State<DrinkSearch> {
         this._appBarTitle = new TextField(
           controller: _filter,
           decoration: new InputDecoration(
-              prefixIcon: new Icon(Icons.search),
-              hintText: 'Search...'
-          ),
+              prefixIcon: new Icon(Icons.search), hintText: 'Search...'),
         );
       } else {
         this._searchIcon = new Icon(Icons.search);
-        this._appBarTitle = new Text( 'Search Example' );
+        this._appBarTitle = new Text('Search Example');
         filteredNames = names;
         _filter.clear();
       }
@@ -170,7 +160,8 @@ class _DrinkSearchState extends State<DrinkSearch> {
 
   //this method extracts the names from the JSON file and puts them in a list, shuffles the list, then sets a name.
   void _getNames() async {
-    final drinkData = await DefaultAssetBundle.of(context).loadString('assets/drinks.json');
+    final drinkData =
+        await DefaultAssetBundle.of(context).loadString('assets/drinks.json');
     List jsonList = jsonDecode(drinkData);
     List tempList = new List();
     for (int i = 0; i < jsonList.length; i++) {
@@ -186,12 +177,11 @@ class _DrinkSearchState extends State<DrinkSearch> {
   //this method creates a new page that is populated with listTiles that were selected and therefore favorited (for now).
   //this puts the specified favorited drink in a divided tile.
   void _pushSaved() {
-
     Navigator.of(context).push<Set>(
-         new MaterialPageRoute(
-        builder: (BuildContext context){
+      new MaterialPageRoute(
+        builder: (BuildContext context) {
           final Iterable<ListTile> tiles = _saved.map(
-                (String filteredNames) {
+            (String filteredNames) {
               return new ListTile(
                 title: new Text(
                   filteredNames.toString(),
@@ -200,12 +190,10 @@ class _DrinkSearchState extends State<DrinkSearch> {
               );
             },
           );
-          final List<Widget> divided = ListTile
-              .divideTiles(
+          final List<Widget> divided = ListTile.divideTiles(
             context: context,
             tiles: tiles,
-          )
-              .toList();
+          ).toList();
           return new Scaffold(
             appBar: new AppBar(
               title: const Text('Favorited Drinks'),
@@ -217,5 +205,4 @@ class _DrinkSearchState extends State<DrinkSearch> {
       ),
     );
   }
-
 }

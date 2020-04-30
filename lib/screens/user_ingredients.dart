@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:core';
-import 'drinks_widget.dart';
-import 'dart:convert';
 import 'package:mixdrinks/screens/drinks_widget.dart';
 
 ///Class is responsible for the handling of user's selected ingredients
