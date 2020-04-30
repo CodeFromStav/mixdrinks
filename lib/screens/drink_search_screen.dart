@@ -91,7 +91,9 @@ class _DrinkSearchState extends State<DrinkSearch> {
         //allows us to see what drink is already saved
         final alreadySaved = _saved.contains(filteredNames[index].toString());
 
-        return Column(children: [
+        return Column(
+            children: [
+
           Container(
             //this ListTile contains the name of the drink as well as a heart icon trailing that turns red when activated
             child: ListTile(
@@ -115,6 +117,9 @@ class _DrinkSearchState extends State<DrinkSearch> {
                   ),
                 );
 
+
+              },
+              onLongPress: (){
                 setState(() {
                   if (alreadySaved) {
                     _saved.remove(filteredNames.toString());
