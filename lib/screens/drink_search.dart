@@ -14,16 +14,8 @@ class _DrinkSearchState extends State<DrinkSearch> {
 
   //Favorite Functionality:
   //This set stores the drinks that the user favorited (set does not allow duplicates)
-//  final List<String> _suggestions = <String>[];
   final Set<String> _saved = Set<String>();   // Add this line.
   final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
-//  static List<String> myDrinks = new List();
-
-  //new implementation here
-  int _itemLength;
-  List<bool> _isFavorited = [];
-
-
 
   final TextEditingController _filter = new TextEditingController();
   String _searchText = "";
@@ -52,7 +44,7 @@ class _DrinkSearchState extends State<DrinkSearch> {
     this._getNames();
     super.initState();
   }
-
+  //build function is called multiple times throughout program to set the build the display
   Widget build(BuildContext context) {
 
     return Scaffold(
@@ -61,19 +53,12 @@ class _DrinkSearchState extends State<DrinkSearch> {
 
       body: Container(
         child: _buildList(), //ADDED STRING PARAM
-
       ),
-
-
       resizeToAvoidBottomPadding: false,
-
     );
 
   }
-
-
-
-
+  //Created a widget that includes the search bar at the top
   Widget _buildBar(BuildContext context) {
     return new AppBar(
       centerTitle: true,
@@ -88,13 +73,9 @@ class _DrinkSearchState extends State<DrinkSearch> {
       ],                      // ... to here.
     );
 
-
   }
-
-  Widget _buildList( ) { //ADDED STRING PARAM
-
-    //allows us to see what drink is already saved
-//    int index = 1;
+  //builds a list of drinks based on the JSON file we read from
+  Widget _buildList( ) {
 
     if ((_searchText.isNotEmpty)) {
       List tempList = new List();
@@ -105,32 +86,30 @@ class _DrinkSearchState extends State<DrinkSearch> {
       }
       filteredNames = tempList;
     }
+    //this returns the ListView and carries out onTap actions
     return ListView.builder(
       itemCount: names == null ? 0 : filteredNames.length,
       itemBuilder: (BuildContext context, int index) {
+
+        //allows us to see what drink is already saved
         final alreadySaved = _saved.contains(filteredNames[index].toString());
 
-
         return Column(
-
 
           children:[
 
               Container(
-
+              //this ListTile contains the name of the drink as well as a heart icon trailing that turns red when activated
               child:  ListTile(
                       title: Text(filteredNames[index]['name']),
                       trailing: Icon(
                       alreadySaved ? Icons.favorite : Icons.favorite_border,
                       color: alreadySaved ? Colors.red : null,
                       ),
-
-
-
+                //when a specific tile is pressed, it will take you to a page containing the following sections. It will also update the drink to pressed,
+                //and add that drink selected to favorites for now.
                 onTap: () {
 
-
-//                  print(_saved);
                   Navigator.pushNamed(
                     context,
                     DrinkInfo.id,
@@ -144,10 +123,6 @@ class _DrinkSearchState extends State<DrinkSearch> {
                   );
 
                   setState(() {
-//                    for (var value in filteredNames) {
-//                      index += index;
-//                      String value = filteredNames.toString();
-//                    }
 
                     if(alreadySaved){
                       _saved.remove(filteredNames.toString());
@@ -159,73 +134,20 @@ class _DrinkSearchState extends State<DrinkSearch> {
                       _saved.add(filteredNames[index].toString());
                       print("Drink " + filteredNames[index].toString() + "ADDED!");
                       print("\n  ==================== \n");
-//                      print(_saved);
-//                      int index = 0;
 
                     }
                     print(_saved);
 
 
                   });
-
-//                  print(_saved);
-//                  print(filteredNames);
-
-
-
                   },
               ),
               ),
-//            Container(
-//              child: IconButton(
-//                onPressed: (
-//
-//                )
-//              ),
-//
-//
-//            )
-
-
         ]);
       },
-
-
-
-        );
-      }
-
-
-//      Widget gestures = new GestureDetector(
-//        onTap: (
-//
-//        ),
-//
-//        onDoubleTap: (
-//            setState(() {
-//
-//
-//
-//            });
-//
-//        ),
-//
-//
-//      )
-
-
-//  getItemAndNavigate(String item, BuildContext context){
-////    Navigator.push(
-////        context,
-////        MaterialPageRoute(
-////            builder: (context) => DrinksWidget(itemHolder : item)
-////        )
-////    );
-//
-//
-//  }
-
-
+    );
+  }
+//this method carries out the search bar functionality
   void _searchPressed() {
     setState(() {
       if (this._searchIcon.icon == Icons.search) {
@@ -246,13 +168,12 @@ class _DrinkSearchState extends State<DrinkSearch> {
     });
   }
 
+  //this method extracts the names from the JSON file and puts them in a list, shuffles the list, then sets a name.
   void _getNames() async {
     final drinkData = await DefaultAssetBundle.of(context).loadString('assets/drinks.json');
     List jsonList = jsonDecode(drinkData);
-    //print(jsonList);
     List tempList = new List();
     for (int i = 0; i < jsonList.length; i++) {
-      //print(jsonList[i]); // 2 drinks at a time
       tempList.add(jsonList[i]);
     }
     setState(() {
@@ -262,11 +183,9 @@ class _DrinkSearchState extends State<DrinkSearch> {
     });
   }
 
+  //this method creates a new page that is populated with listTiles that were selected and therefore favorited (for now).
+  //this puts the specified favorited drink in a divided tile.
   void _pushSaved() {
-
-
-        print("ACTIVATED _pushSaved");
-
 
     Navigator.of(context).push<Set>(
          new MaterialPageRoute(
@@ -287,21 +206,13 @@ class _DrinkSearchState extends State<DrinkSearch> {
             tiles: tiles,
           )
               .toList();
-          return new Scaffold(         // Add 6 lines from here...
+          return new Scaffold(
             appBar: new AppBar(
               title: const Text('Favorited Drinks'),
               leading: Container(),
             ),
             body: new ListView(children: divided),
-          );                           // ... to here.
-//          return new Scaffold(
-//            appBar: new AppBar(
-//              title: const Text('Saved Suggestions'),
-//            ),
-//            body: new ListView(children: divided),
-//          );
-
-
+          );
         },
       ),
     );
