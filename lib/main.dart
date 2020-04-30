@@ -5,7 +5,6 @@ import 'package:mixdrinks/screens/drinks_widget.dart';
 import 'package:mixdrinks/screens/home_screen.dart';
 import 'package:mixdrinks/screens/profile_information.dart';
 import 'package:mixdrinks/screens/profile_widget.dart';
-import 'package:mixdrinks/screens/user_ingredients.dart';
 import 'package:mixdrinks/screens/welcome_screen.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/registration_screen.dart';
@@ -24,10 +23,10 @@ class MixDrinks extends StatelessWidget {
           primaryColor: Color(0xFFE5B143),
       ),
       // Set the initial route
-      initialRoute: Home.id,
+      initialRoute: WelcomeScreen.id,
       // Set the routes for each of the pages
       routes: {
-        WelcomeScreen.id: (context) => Home(),
+        WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         Home.id: (context) => Home(),
