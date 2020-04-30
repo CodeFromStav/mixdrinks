@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mixdrinks/screens/drink_info.dart';
-import 'package:mixdrinks/screens/drink_search.dart';
+import 'package:mixdrinks/screens/drink_info_screen.dart';
+import 'package:mixdrinks/screens/drink_search_screen.dart';
 import 'package:mixdrinks/screens/drinks_widget.dart';
 import 'package:mixdrinks/screens/home_screen.dart';
 import 'package:mixdrinks/screens/profile_information_screen.dart';

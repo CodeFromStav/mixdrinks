@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mixdrinks/screens/drink_search.dart';
+import 'package:mixdrinks/screens/drink_search_screen.dart';
 import 'package:mixdrinks/screens/profile_screen.dart';
 
-import 'user_ingredients.dart';
+import 'user_ingredients_screen.dart';
 
 class Home extends StatefulWidget {
   static const String id = 'home_screen';
