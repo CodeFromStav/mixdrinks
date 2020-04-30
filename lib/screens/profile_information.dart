@@ -3,6 +3,9 @@ import 'package:mixdrinks/components/user.dart';
 
 // Profile information page where user information is entered
 class ProfileInformation extends StatefulWidget {
+  // Set screen's id for page navigation
+  static const String id = 'profile_information';
+
   @override
   _ProfileInformationState createState() => _ProfileInformationState();
 }
