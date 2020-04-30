@@ -3,6 +3,7 @@ import 'package:mixdrinks/screens/drink_info.dart';
 import 'package:mixdrinks/screens/drink_search.dart';
 import 'package:mixdrinks/screens/drinks_widget.dart';
 import 'package:mixdrinks/screens/home_screen.dart';
+import 'package:mixdrinks/screens/user_ingredients.dart';
 import 'package:mixdrinks/screens/welcome_screen.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/registration_screen.dart';
@@ -18,9 +19,9 @@ class MixDrinks extends StatelessWidget {
       theme: ThemeData(
           primaryColor: Color(0xFFE5B143),
       ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: Home.id,
       routes: {
-        WelcomeScreen.id: (context) => WelcomeScreen(),
+        WelcomeScreen.id: (context) => Home(),
         LoginScreen.id: (context) => LoginScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
         Home.id: (context) => Home(),
