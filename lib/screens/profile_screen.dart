@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mixdrinks/screens/profile_information.dart';
+import 'package:mixdrinks/screens/profile_information_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/user_ingredients.dart';

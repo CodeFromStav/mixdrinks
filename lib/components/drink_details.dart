@@ -5,6 +5,5 @@ class DrinkDetails {
   final ingredients;
   final preparation;
 
-
   DrinkDetails(this.name, this.glass,this.category,this.ingredients,this.preparation);
 }

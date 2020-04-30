@@ -153,16 +153,12 @@ class DrinksWidget extends StatelessWidget {
   }
 
   bool canMake(List<dynamic> drink) {
-    //print(drink);
-    //print(myIngredients);
     for (int i = 0; i < drink.length; i++) {
       String ingredient = drink[i]['ingredient'];
-      //print("Ingredient: " + ingredient);
       if (!isBrewable(ingredient)) {
         return false;
       }
     }
-    //print(drink);
     return true;
   }
 
