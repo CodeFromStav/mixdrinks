@@ -1,3 +1,5 @@
+// Holds information about drinks from json file.
+// forwarded to drink_info page for parsing
 class DrinkDetails {
   final name;
   final glass;

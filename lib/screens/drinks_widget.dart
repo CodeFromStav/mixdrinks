@@ -1,6 +1,6 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:mixdrinks/screens/user_ingredients.dart' as ingredients;
+import 'package:mixdrinks/screens/user_ingredients_screen.dart' as ingredients;
 import 'dart:convert';
 
 class DrinksWidget extends StatelessWidget {

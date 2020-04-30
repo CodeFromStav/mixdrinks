@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:mixdrinks/screens/drink_info.dart';
+import 'package:mixdrinks/screens/drink_info_screen.dart';
 import 'package:mixdrinks/components/drink_details.dart';
 
 class DrinkSearch extends StatefulWidget {
