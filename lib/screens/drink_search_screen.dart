@@ -199,12 +199,21 @@ class _DrinkSearchState extends State<DrinkSearch> {
             context: context,
             tiles: tiles,
           ).toList();
-          return new Scaffold(
+          return new WillPopScope(
+            onWillPop: () async => false,
+
+            child:Scaffold(
             appBar: new AppBar(
               title: const Text('Favorited Drinks'),
-              leading: Container(),
+              leading: BackButton(
+                color: Colors.black,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
             ),
             body: new ListView(children: divided),
+          ),
           );
         },
       ),
