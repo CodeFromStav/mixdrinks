@@ -154,7 +154,7 @@ class DrinksWidget extends StatelessWidget {
     drinkStatus = new List();
     if (drinkArchive != null) {
       for (int i = 0; i < drinkArchive.length; i++) {
-        //print("Drink: " + tempList[i]['name']);
+        //print("Drink: " + drinkArchive[i]['name']);
 
         drinkStatus.add(canMake(drinkArchive[i]['ingredients']));
         //print(canMake(tempList[i]['ingredients']));
@@ -166,7 +166,7 @@ class DrinksWidget extends StatelessWidget {
   bool canMake(List<dynamic> drink) {
     for (int i = 0; i < drink.length; i++) {
       String ingredient = drink[i]['ingredient'];
-      if (!hasIngredient(ingredient)) {
+      if (!hasIngredient(ingredient)&&ingredient != null) {
         return false;
       }
     }
