@@ -103,8 +103,14 @@ class DrinksWidget extends StatelessWidget {
   List<Container> _buildGridTileList(int count) => List.generate(
       count,
       (i) => Container(
-          child: Image.asset(
-              'images/${renderList[i].replaceAll(" ", "").toLowerCase()}.jpg')));
+          child: FlatButton(
+              onPressed: () {
+                //Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+              },
+              child: Image.asset('images/${renderList[i].replaceAll(" ", "").toLowerCase()}.jpg'))),);
+
+
+
 
   @override
   Widget build(BuildContext context) {
