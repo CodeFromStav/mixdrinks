@@ -236,7 +236,7 @@ class _UserIngredientsState extends State<UserIngredients> {
           onChanged: (bool newVal) {
             setState(() {
               addIngredient(text);
-              print(myIngredients);
+              //print(myIngredients);
             });
           },
         ),
@@ -277,11 +277,22 @@ class _UserIngredientsState extends State<UserIngredients> {
   }
 
   void checkBoxes() {
+    List<String> temp =  new List();
+    for (int index = 0; index < drinkIngredients.length; index++){
+      temp.add("");
+    }
+    for (int index = 0; index < drinkIngredients.length; index++){
+      temp[index] = drinkIngredients[index];
+      drinkIngredients[index] =  drinkIngredients[index].replaceAll(" ", "").toLowerCase();
+    }
     for (int index = 0; index < myIngredients.length; index++) {
       int element = drinkIngredients.indexOf(myIngredients[index]);
-      if ( element > 0) {
+      if ( element >= 0) {
         values[element] = true;
       }
+    }
+    for (int index = 0; index < drinkIngredients.length; index++){
+      drinkIngredients[index] =  temp[index];
     }
   }
 

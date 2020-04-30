@@ -145,10 +145,10 @@ class DrinksWidget extends StatelessWidget {
     drinkStatus = new List();
     if ( tempList != null ) {
       for (int i = 0; i < tempList.length; i++) {
-        print("Drink: " + tempList[i]['name']);
+        //print("Drink: " + tempList[i]['name']);
 
         drinkStatus.add(canMake(tempList[i]['ingredients']));
-        print(canMake(tempList[i]['ingredients']));
+        //print(canMake(tempList[i]['ingredients']));
       }
     }
   }
@@ -175,20 +175,20 @@ class DrinksWidget extends StatelessWidget {
         if (drinkStatus[i]) {
           if (!renderList.contains(simpleDrink)) {
             renderList.add(simpleDrink);
-            print(simpleDrink + " added to the drinks page");
+            //print(simpleDrink + " added to the drinks page");
           }
         }
 
         else {
           if (renderList.contains(simpleDrink)) {
             renderList.remove(simpleDrink);
-            print(simpleDrink + " removed from the drinks page");
+            //print(simpleDrink + " removed from the drinks page");
           }
         }
       }
     }
 
-    print(renderList.length);
+    //print(renderList.length);
   }
 
   bool isBrewable(String ingredient) {
