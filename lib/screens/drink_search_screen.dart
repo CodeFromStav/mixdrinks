@@ -122,7 +122,7 @@ class _DrinkSearchState extends State<DrinkSearch> {
               onLongPress: (){
                 setState(() {
                   if (alreadySaved) {
-                    _saved.remove(filteredNames.toString());
+                    _saved.remove(filteredNames[index].toString());
                     print("Drink " +
                         filteredNames[index].toString() +
                         "REMOVED!");
