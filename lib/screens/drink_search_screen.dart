@@ -73,6 +73,7 @@ class _DrinkSearchState extends State<DrinkSearch> {
 
   //builds a list of drinks based on the JSON file we read from
   Widget _buildList() {
+
     if ((_searchText.isNotEmpty)) {
       List tempList = new List();
       for (int i = 0; i < filteredNames.length; i++) {
@@ -123,18 +124,12 @@ class _DrinkSearchState extends State<DrinkSearch> {
                 setState(() {
                   if (alreadySaved) {
                     _saved.remove(filteredNames[index].toString());
-                    print("Drink " +
-                        filteredNames[index].toString() +
-                        "REMOVED!");
-                    print("\n  ==================== \n");
-                    print(_saved);
+                    print("Drink " + filteredNames[index].toString() + " REMOVED!");
+
                   } else {
                     _saved.add(filteredNames[index].toString());
-                    print(
-                        "Drink " + filteredNames[index].toString() + "ADDED!");
-                    print("\n  ==================== \n");
+                    print("Drink " + filteredNames[index].toString() + " ADDED!");
                   }
-                  print(_saved);
                 });
               },
             ),
