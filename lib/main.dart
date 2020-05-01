@@ -9,8 +9,6 @@ import 'package:mixdrinks/screens/welcome_screen.dart';
 import 'package:mixdrinks/screens/login_screen.dart';
 import 'package:mixdrinks/screens/registration_screen.dart';
 
-import 'screens/brewing_screen.dart';
-
 // Run the app
 void main() => runApp(MixDrinks());
 
@@ -31,7 +29,7 @@ class MixDrinks extends StatelessWidget {
         RegistrationScreen.id: (context) => RegistrationScreen(),
         Home.id: (context) => Home(),
         DrinkSearch.id: (context) => DrinkSearch(),
-        DrinksWidget.id: (context) => DrinksWidget(),
+        BrewingScreen.id: (context) => BrewingScreen(),
         DrinkSearch.id: (context) => DrinkSearch(),
         DrinkInfo.id: (context) => DrinkInfo(),
         ProfileWidget.id: (context) => ProfileWidget(),

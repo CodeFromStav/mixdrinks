@@ -261,7 +261,7 @@ class _UserIngredientsState extends State<UserIngredients> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.pushNamed(context, DrinksWidget.id,
+          Navigator.pushNamed(context, BrewingScreen.id,
               arguments: myIngredients); // Move to Drinks Page
         },
         label: Text('Brew Drinks'),

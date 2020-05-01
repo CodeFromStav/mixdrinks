@@ -6,7 +6,7 @@ import 'package:mixdrinks/screens/drink_info_screen.dart';
 import 'package:mixdrinks/components/drink_details.dart';
 
 ///Class is responsible for handling the user generated drinks page
-class DrinksWidget extends StatelessWidget {
+class BrewingScreen extends StatelessWidget {
   ///Class Variables
   static const String id = 'drinks_screen';
   static List<String> myIngredients = ingredients.UserIngredients.ingredients; // stores the dynamic list of user selected ingredients
