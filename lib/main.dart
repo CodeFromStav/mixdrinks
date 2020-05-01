@@ -32,7 +32,7 @@ class MixDrinks extends StatelessWidget {
         BrewingScreen.id: (context) => BrewingScreen(),
         DrinkSearch.id: (context) => DrinkSearch(),
         DrinkInfo.id: (context) => DrinkInfo(),
-        ProfileWidget.id: (context) => ProfileWidget(),
+        ProfileScreen.id: (context) => ProfileScreen(),
         ProfileInformation.id: (context) => ProfileInformation(),
       },
     );

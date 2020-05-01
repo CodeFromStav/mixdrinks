@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     DrinkSearch(),
     UserIngredients(),
-    ProfileWidget()
+    ProfileScreen()
   ];
 
   @override
@@ -40,7 +40,8 @@ class _HomeState extends State<Home> {
             title: Text('Mix Drinks'),
           ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.person), title: Text('Profile'))
+              icon: Icon(Icons.person),
+              title: Text('Profile'))
         ],
       ),
     );
