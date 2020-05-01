@@ -189,7 +189,7 @@ class _DrinkSearchState extends State<DrinkSearch> {
             (String filteredNames) {
               return new ListTile(
                 title: new Text(
-                  filteredNames.toString(),
+                  filteredNames.toString().split((":"))[1].trim().split(",")[0],
                   style: _biggerFont,
                 ),
               );
