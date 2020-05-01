@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:mixdrinks/screens/drink_info_screen.dart';
 import 'package:mixdrinks/components/drink_details.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+
 
 class DrinkSearch extends StatefulWidget {
   static const String id = 'drink_search';
@@ -11,6 +14,17 @@ class DrinkSearch extends StatefulWidget {
 }
 
 class _DrinkSearchState extends State<DrinkSearch> {
+  void showToast() {
+    Fluttertoast.showToast(
+    msg: "hold to favorite",
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.TOP,
+    timeInSecForIosWeb: 1,
+    backgroundColor: Colors.grey,
+    textColor: Colors.white,
+    fontSize: 16.0
+    );
+  }
   //Favorite Functionality:
   //This set stores the drinks that the user favorited (set does not allow duplicates)
   final Set<String> _saved = Set<String>(); // Add this line.
@@ -22,6 +36,7 @@ class _DrinkSearchState extends State<DrinkSearch> {
   List filteredNames = new List();
   Icon _searchIcon = new Icon(Icons.search);
   Widget _appBarTitle = new Text('Search Drinks');
+
 
   _DrinkSearchState() {
     _filter.addListener(() {
@@ -42,6 +57,7 @@ class _DrinkSearchState extends State<DrinkSearch> {
   void initState() {
     this._getNames();
     super.initState();
+    showToast();
   }
 
   //build function is called multiple times throughout program to set the build the display
