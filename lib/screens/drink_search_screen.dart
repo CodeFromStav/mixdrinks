@@ -14,6 +14,8 @@ class DrinkSearch extends StatefulWidget {
 }
 
 class _DrinkSearchState extends State<DrinkSearch> {
+
+  // shows message to user to hold down to favorite stuff
   void showToast() {
     Fluttertoast.showToast(
     msg: "hold to favorite",
